@@ -5,17 +5,30 @@ const  Foot = () =>{
     const style = { 
       footer: {
         padding: '.5rem 2rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
         githubIcon: {
           position: 'relative',
-          top: 3,
-          paddingLeft: '.25rem'
+          top: 6,
+          fontSize: 30,
+          paddingRight: '.75rem'
+        },
+        about: {
+          margin: 0
         }
       }
     }
     return (
       <Footer animate>
         <Content style={style.footer}>
-          <p>
+          <Link
+            href="https://github.com/bpmutter/sw-trader-frontend"
+            target="_blank"
+            style={style.footer.githubIcon}
+          >
+            <FaGithub />
+          </Link>
+          <p style={style.footer.about}>
             Made with great force focus by{" "}
             <Link href="#" target="_blank">
               Brad Simpson
@@ -25,13 +38,6 @@ const  Foot = () =>{
               Ben Perlmutter
             </Link>
             .{" "}
-            <Link
-              href="https://github.com/bpmutter/sw-trader-frontend"
-              target="_blank"
-              style={style.footer.githubIcon}
-            >
-              <FaGithub />
-            </Link>
           </p>
         </Content>
       </Footer>

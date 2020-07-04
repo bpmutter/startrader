@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme, Arwes } from "arwes";
 import myTheme from '../theme/theme';
 import TopHeader from './Header';
 import Foot from './Footer';
+import Homepage from './Homepage';
 
 function App() {
   
@@ -10,7 +11,7 @@ function App() {
     <ThemeProvider theme={createTheme()}>
       <Arwes>
         <TopHeader/>
-        <p>main site content</p>
+        <Homepage/>
         <Foot/>
       </Arwes>
     </ThemeProvider>

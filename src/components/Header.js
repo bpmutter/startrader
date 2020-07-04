@@ -1,7 +1,7 @@
 import React from 'react'
 import {Header, Heading, Link, Button} from "arwes";
-import Input from './Input';
-import { FaSearch } from "react-icons/fa";
+import { FaUserAstronaut } from 'react-icons/fa'
+
 
 
 const TopHeader = () => {
@@ -9,7 +9,7 @@ const TopHeader = () => {
     const style = {
       navBar: {
         display: 'flex',
-        padding: '1rem 1.5rem',
+        padding: '.5rem 1.5rem',
         justifyContent: 'space-between',
         alignItems: 'center',
       },
@@ -27,37 +27,38 @@ const TopHeader = () => {
           fontWeight: 600,
         }
       },
-      searchBar: {
-        display: "flex",
-        alignItems: 'center',
-        searchButton: {
-          paddingLeft: '.5rem',
-        },
-      },
+      additionalInfo: {
+        icon: {
+          fontSize: '1.5rem',
+          position: 'relative',
+          top: 5,
+        }
+      }
+      
     };
     return (
       // <div style={{ padding: 20 }}>
-        <Header animate layer='header'>
-          <nav style={style.navBar}>
-            <div style={style.navLinks}>
-              <Link href="/">
-                <Heading node="h2" style={style.navLinks.mainTitle}>
-                  StarTrader
-                </Heading>
-              </Link>
-              <Link href="#" style={style.navLinks.secondary}>Home</Link>
-              <Link href="#" style={style.navLinks.secondary}>Profile</Link>
-            </div>
+      <Header animate layer="header">
+        <nav style={style.navBar}>
+          <div style={style.navLinks}>
+            <Link href="/">
+              <Heading node="h2" style={style.navLinks.mainTitle}>
+                StarTrader
+              </Heading>
+            </Link>
+            <Link href="#" style={style.navLinks.secondary}>
+              Marketplace
+            </Link>
+            <Link href="#" style={style.navLinks.secondary}>
+              Sell Ships
+            </Link>
+          </div>
 
-            <div style={style.searchBar}>
-              <Input width={300} type={"search"} />
-              <Button style={style.searchBar.searchButton}>
-                <FaSearch />
-              </Button>
-            </div>
-
-          </nav>
-        </Header>
+          <div>
+            <Link href="#"><FaUserAstronaut style={style.additionalInfo.icon}/></Link>
+          </div>
+        </nav>
+      </Header>
       // </div>
     );
 }
