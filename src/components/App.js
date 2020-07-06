@@ -6,6 +6,7 @@ import TopHeader from './Header';
 import Foot from './Footer';
 import Homepage from './Homepage';
 import ListingPage from './ListingPage';
+import UserProfile from './UserProfile';
 
 function App() {
   
@@ -21,7 +22,14 @@ function App() {
               <Route path="/listings/:id">
                 <ListingPage/>
               </Route>
+              <Route path="/profile">
+                <UserProfile personalProfile={true}/>
+              </Route>
+              <Route path="/users/:id">
+                <UserProfile/>
+              </Route>
               <Route path="*">
+                {/* ADD 404 page */}
                 <div>404: resource not found :(</div>
               </Route>
             </Switch>

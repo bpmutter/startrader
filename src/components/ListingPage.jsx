@@ -107,7 +107,7 @@ const styles = (theme) => ({
 });
 
 const ListingPage = ({classes}) => { 
-    const {shipId} = useParams();
+    const shipId = useParams().id;
 
     return (
       <Content className={classes.container}>
