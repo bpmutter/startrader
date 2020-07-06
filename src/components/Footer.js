@@ -7,6 +7,7 @@ const  Foot = () =>{
         padding: '.5rem 2rem 1rem',
         display: 'flex',
         alignItems: 'center',
+        height: 100,
         githubIcon: {
           position: 'relative',
           top: 6,

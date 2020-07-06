@@ -42,7 +42,7 @@ const TopHeader = () => {
         <nav style={style.navBar}>
           <div style={style.navLinks}>
             <Link href="/">
-              <Heading node="h2" style={style.navLinks.mainTitle}>
+              <Heading node="h2" style={style.navLinks.mainTitle} className='title-style'>
                 StarTrader
               </Heading>
             </Link>
