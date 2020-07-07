@@ -33,17 +33,17 @@ const ShipCard = ({ship}) => {
     return (
       <Content style={style.wrapper}>
         <Frame animate hover={true} style={style.img}>
-          <Image
-            animate
-            resources={ship.img}
-            layer="primary"
-            style={style.img}
-          ></Image>
+          <a href={`/listings/${ship.owner.id}`}>
+            <Image
+              animate
+              resources={ship.img}
+              layer="primary"
+              style={style.img}
+            ></Image>
+          </a>
           <Content style={style.content}>
             <h3 style={style.content.title}>
-              <a href={`/ships/${ship.id}`}>
-              {ship.name}
-              </a>
+              <a href={`/listings/${ship.id}`}>{ship.name}</a>
             </h3>
             <p style={style.content.additionalInfo}>
               <h6>{ship.cost} credits</h6>

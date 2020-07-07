@@ -19,7 +19,7 @@ const latestShips= [millenniumFalcon, millenniumFalcon, millenniumFalcon];
 
 const LatestShips = () => {
     return (
-        <ShipResults title="Latest Ships" ships={latestShips}/>
+        <ShipResults title="Latest Listings" ships={latestShips}/>
     );
 }
 

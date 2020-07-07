@@ -7,7 +7,7 @@ import ShipResults from './ShipResults';
 const Homepage = () => {
     const style = {
       background: {
-        paddingTop: '1.5rem',
+        padding: '1.5rem',
         margin: 0,
         position: 'relative',
         zIndex: -1,

@@ -15,6 +15,7 @@ const QuickSearch = () => {
     return (
       <>
         <div style={style.wrapper}>
+            <Button style={style.button}>Latest</Button>
             <Button style={style.button}>Unique Ships</Button>
             <Button style={style.button}>Starfighters</Button>
             <Button style={style.button}>High Capacity</Button>
