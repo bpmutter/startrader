@@ -6,7 +6,12 @@ const QuickSearch = () => {
       wrapper: {
         display: "flex",
         justifyContent: "center",
+        flexDirection: 'row',
+        flexWrap:'no-wrap',
+
         margin: ".75rem",
+        maxWidth: 800,
+        xOverflow: 'auto',
       },
       button: {
         margin: ".5rem .5rem",

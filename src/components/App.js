@@ -7,12 +7,15 @@ import Foot from './Footer';
 import Homepage from './Homepage';
 import ListingPage from './ListingPage';
 import UserProfile from './UserProfile';
+import Background from './Background'
 
 function App() {
   
   return (
       <ThemeProvider theme={createTheme()}>
+        <>
         <Arwes>
+          <Background/>
           <Router>
             <TopHeader />
             <Switch>
@@ -39,7 +42,7 @@ function App() {
             </Switch>
             <Foot />
           </Router>
-        </Arwes>
+        </Arwes></>
       </ThemeProvider>
   );
 }
