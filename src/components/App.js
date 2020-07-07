@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { ThemeProvider, createTheme, Arwes } from "arwes";
 // import myTheme from '../theme/theme';
 import TopHeader from './Header';
@@ -28,8 +28,12 @@ function App() {
               <Route path="/users/:id">
                 <UserProfile/>
               </Route>
+              <Route path="/logout">
+                {/* TODO: add logout functionality */}
+                <Redirect to="/"/>
+              </Route>
               <Route path="*">
-                {/* ADD 404 page */}
+                {/* TODO: ADD 404 page */}
                 <div>404: resource not found :(</div>
               </Route>
             </Switch>
