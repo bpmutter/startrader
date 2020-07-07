@@ -17,7 +17,7 @@ const user = {
 
 const styles = (theme) => ({
   profileWrapper: {
-    margin: "1rem 10rem",
+    margin: "1rem 10rem 4rem",
     [`@media (max-width: ${theme.responsive.medium + 1}px)`]: {
       margin: "1rem 5rem",
     },

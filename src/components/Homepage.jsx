@@ -9,6 +9,7 @@ const Homepage = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginBottom: '3rem',
       },
       quickSearch: {
         margin: "3rem",

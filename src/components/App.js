@@ -2,48 +2,67 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { ThemeProvider, createTheme, Arwes } from "arwes";
 // import myTheme from '../theme/theme';
-import TopHeader from './Header';
-import Foot from './Footer';
+import Header from './Header';
+import Footer from './Footer';
 import Homepage from './Homepage';
 import ListingPage from './ListingPage';
 import UserProfile from './UserProfile';
 import Background from './Background'
+import Login from './Login';
 
 function App() {
-  
+  const styles = { 
+    pageContainer: { 
+      position: 'relative',
+      minHeight: '100vh',
+    },
+    contentWrap: {
+      paddingBottom: '2.5rem'
+    },
+    footer: {
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
+      height: '2.5rem',
+    }
+  }
   return (
-      <ThemeProvider theme={createTheme()}>
-        <>
+    <ThemeProvider theme={createTheme()}>
+      <>
         <Arwes>
-          <Background/>
           <Router>
-            <TopHeader />
+            <Header />
             <Switch>
               <Route exact path="/">
                 <Homepage />
               </Route>
               <Route path="/listings/:id">
-                <ListingPage/>
+                <ListingPage />
               </Route>
               <Route path="/profile">
-                <UserProfile personalProfile={true}/>
+                <UserProfile personalProfile={true} />
               </Route>
               <Route path="/users/:id">
-                <UserProfile/>
+                <UserProfile />
               </Route>
               <Route path="/logout">
                 {/* TODO: add logout functionality */}
-                <Redirect to="/"/>
+                <Redirect to="/" />
+              </Route>
+              <Route path="/login">
+                <Login></Login>
               </Route>
               <Route path="*">
                 {/* TODO: ADD 404 page */}
                 <div>404: resource not found :(</div>
               </Route>
             </Switch>
-            <Foot />
+              <Footer />
+            <Background />
           </Router>
-        </Arwes></>
-      </ThemeProvider>
+        </Arwes>
+      </>
+    </ThemeProvider>
   );
 }
 

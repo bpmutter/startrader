@@ -56,8 +56,11 @@ const TopHeader = ({classes}) => {
     const [showDropdown, changeDropdown] = useState(false);
 
     const toggleDropdown = e => {
-      // e.preventDefault();
       changeDropdown(!showDropdown);
+    }
+    const logOut = () => {
+      localStorage.setItem('id', null)
+      localStorage.setItem('token', null)
     }
     return (
       // <div style={{ padding: 20 }}>
@@ -96,7 +99,7 @@ const TopHeader = ({classes}) => {
                         <Link href="/sell-ship">Sell Ship</Link>
                       </li>
                       <li>
-                        <Link href="/logout">Logout</Link>
+                        <Link href="/logout" onClick={logOut}>Logout</Link>
                       </li>
                     </ul>
                   </Frame>
