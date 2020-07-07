@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ShipResults from './ShipResults';
 
 const millenniumFalcon = {
@@ -18,6 +18,14 @@ const millenniumFalcon = {
 const latestShips= [millenniumFalcon, millenniumFalcon, millenniumFalcon];
 
 const LatestShips = () => {
+    const [latest,setLatest] = useState();
+    useEffect( ()=>{
+      (async ()=>{
+        const res = await fetch("http://localhost:5000/ships/all");
+        const {star_ships} = await res.json();
+        setLatest(star_ships)
+      })()
+    }, [])
     return (
         <ShipResults title="Latest Listings" ships={latestShips}/>
     );

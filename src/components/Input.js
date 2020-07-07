@@ -4,6 +4,12 @@ import {Frame} from 'arwes'
 
 const Input = (props) => {
     const style = {
+        labelText: {
+          width: 150,
+          display: 'inline-block',
+          paddingRight: '1rem',
+          textAlign: 'right'
+        },
         inputFrame: {
             width: props.width,
             padding: '5px 3px',
@@ -21,16 +27,26 @@ const Input = (props) => {
         },
     };
     return (
-      <Frame
-        show={true}
-        animate={true}
-        // level={3}
-        corners={4}
-        // layer="primary"
-        style={style.inputFrame}
-      >
-        <input style={style.input} type={props.type}></input>
-      </Frame>
+      <p>
+        <label>
+          <span style={style.labelText}>{props.label}</span>
+          <Frame
+            show={true}
+            animate={true}
+            // level={3}
+            corners={4}
+            // layer="primary"
+            style={style.inputFrame}
+          >
+            <input
+              style={style.input}
+              type={props.type}
+              name={props.name}
+              onChange={props.onChange}
+            ></input>
+          </Frame>
+        </label>
+      </p>
     );
 
 }

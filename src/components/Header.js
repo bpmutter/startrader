@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Header, Heading, Link, Frame, withStyles } from "arwes";
 import { FaUserAstronaut } from 'react-icons/fa'
+import appContext from './Context';
+import Button from 'arwes/lib/Button';
 
 const styles = (theme) => ({
   navBar: {
@@ -37,7 +39,7 @@ const styles = (theme) => ({
       listStyleType: 'none',
       margin: 0,
       padding: '1rem',
-    }
+    },
   },
   modal: {
     position: 'fixed',
@@ -53,14 +55,15 @@ const styles = (theme) => ({
 });
 
 const TopHeader = ({classes}) => {
+
+    const {logout, user} = useContext(appContext);
     const [showDropdown, changeDropdown] = useState(false);
 
     const toggleDropdown = e => {
       changeDropdown(!showDropdown);
     }
-    const logOut = () => {
-      localStorage.setItem('id', null)
-      localStorage.setItem('token', null)
+    const logoutUser = () => {
+      logout();
     }
     return (
       // <div style={{ padding: 20 }}>
@@ -80,36 +83,58 @@ const TopHeader = ({classes}) => {
             </Link>
           </div>
 
-          <div>
-            <Link>
-              <FaUserAstronaut
-                className={classes.icon}
-                onClick={toggleDropdown}
-              />
-            </Link>
-            {showDropdown ? (
-              <>
-                <div className={classes.dropdown}>
-                  <Frame animate level={3} corners={4} onClick={toggleDropdown}>
-                    <ul>
-                      <li>
-                        <Link href="/profile">Profile</Link>
-                      </li>
-                      <li>
-                        <Link href="/sell-ship">Sell Ship</Link>
-                      </li>
-                      <li>
-                        <Link href="/logout" onClick={logOut}>Logout</Link>
-                      </li>
-                    </ul>
-                  </Frame>
-                </div>
-                <div className={classes.modal} onClick={toggleDropdown}></div>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
+          {!user ? (
+            <div>
+              <Link href="/login">
+                <Button style={{ width: 100, textAlign: "center" }}>
+                  Login
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button style={{ width: 100, textAlign: "center" }}>
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link>
+                <FaUserAstronaut
+                  className={classes.icon}
+                  onClick={toggleDropdown}
+                />
+              </Link>
+              {showDropdown ? (
+                <>
+                  <div className={classes.dropdown}>
+                    <Frame
+                      animate
+                      level={3}
+                      corners={4}
+                      onClick={toggleDropdown}
+                    >
+                      <ul>
+                        <li>
+                          <Link href="/profile">Profile</Link>
+                        </li>
+                        <li>
+                          <Link href="/sell-ship">Sell Ship</Link>
+                        </li>
+                        <li>
+                          <Link href="/logout" onClick={logoutUser}>
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </Frame>
+                  </div>
+                  <div className={classes.modal} onClick={toggleDropdown}></div>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
         </nav>
       </Header>
       // </div>

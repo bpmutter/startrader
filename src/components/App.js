@@ -11,58 +11,44 @@ import Background from './Background'
 import Login from './Login';
 
 function App() {
-  const styles = { 
-    pageContainer: { 
-      position: 'relative',
-      minHeight: '100vh',
-    },
-    contentWrap: {
-      paddingBottom: '2.5rem'
-    },
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      width: '100%',
-      height: '2.5rem',
-    }
-  }
+  
   return (
-    <ThemeProvider theme={createTheme()}>
-      <>
-        <Arwes>
-          <Router>
-            <Header />
-            <Switch>
-              <Route exact path="/">
-                <Homepage />
-              </Route>
-              <Route path="/listings/:id">
-                <ListingPage />
-              </Route>
-              <Route path="/profile">
-                <UserProfile personalProfile={true} />
-              </Route>
-              <Route path="/users/:id">
-                <UserProfile />
-              </Route>
-              <Route path="/logout">
-                {/* TODO: add logout functionality */}
-                <Redirect to="/" />
-              </Route>
-              <Route path="/login">
-                <Login></Login>
-              </Route>
-              <Route path="*">
-                {/* TODO: ADD 404 page */}
-                <div>404: resource not found :(</div>
-              </Route>
-            </Switch>
+      <ThemeProvider theme={createTheme()}>
+        <>
+          <Arwes>
+            <Router>
+              <Header />
+              <Switch>
+                <Route exact path="/">
+                  <Homepage />
+                </Route>
+                <Route path="/listings/:id">
+                  <ListingPage />
+                </Route>
+                <Route path="/profile">
+                  <UserProfile personalProfile={true} />
+                </Route>
+                <Route path="/users/:id">
+                  <UserProfile />
+                </Route>
+                <Route path="/logout">
+                  {/* TODO: add logout functionality */}
+                  <Redirect to="/" />
+                </Route>
+                <Route path="/login">
+                  <Login></Login>
+                </Route>
+                <Route path="*">
+                  {/* TODO: ADD 404 page */}
+                  <div>404: resource not found :(</div>
+                </Route>
+              </Switch>
               <Footer />
-            <Background />
-          </Router>
-        </Arwes>
-      </>
-    </ThemeProvider>
+              <Background />
+            </Router>
+          </Arwes>
+        </>
+      </ThemeProvider>
   );
 }
 
