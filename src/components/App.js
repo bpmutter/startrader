@@ -9,46 +9,52 @@ import ListingPage from './ListingPage';
 import UserProfile from './UserProfile';
 import Background from './Background'
 import Login from './Login';
+import SignUp from './SignUp';
 
 function App() {
   
   return (
-      <ThemeProvider theme={createTheme()}>
-        <>
-          <Arwes>
-            <Router>
-              <Header />
-              <Switch>
-                <Route exact path="/">
-                  <Homepage />
-                </Route>
-                <Route path="/listings/:id">
-                  <ListingPage />
-                </Route>
-                <Route path="/profile">
-                  <UserProfile personalProfile={true} />
-                </Route>
-                <Route path="/users/:id">
-                  <UserProfile />
-                </Route>
-                <Route path="/logout">
-                  {/* TODO: add logout functionality */}
-                  <Redirect to="/" />
-                </Route>
-                <Route path="/login">
-                  <Login></Login>
-                </Route>
-                <Route path="*">
-                  {/* TODO: ADD 404 page */}
-                  <div>404: resource not found :(</div>
-                </Route>
-              </Switch>
-              <Footer />
-              <Background />
-            </Router>
-          </Arwes>
-        </>
-      </ThemeProvider>
+    <ThemeProvider theme={createTheme()}>
+      <>
+        <Arwes>
+          <Router>
+            <div style={{minHeight: '91vh'}}>
+            <Header />
+            <Switch>
+              <Route exact path="/">
+                <Homepage />
+              </Route>
+              <Route path="/listings/:id">
+                <ListingPage />
+              </Route>
+              <Route path="/profile">
+                <UserProfile personalProfile={true} />
+              </Route>
+              <Route path="/users/:id">
+                <UserProfile />
+              </Route>
+              <Route path="/logout">
+                {/* TODO: add logout functionality */}
+                <Redirect to="/" />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/signup">
+                <SignUp />
+              </Route>
+              <Route path="*">
+                {/* TODO: ADD 404 page */}
+                <div>404: resource not found :(</div>
+              </Route>
+            </Switch>
+            </div>
+            <Footer />
+            <Background />
+          </Router>
+        </Arwes>
+      </>
+    </ThemeProvider>
   );
 }
 

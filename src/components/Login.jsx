@@ -20,12 +20,6 @@ const Login = () => {
       contentWrapper: {
           margin: '2rem',
       },
-      listings: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
-        // maxWidth: 600,
-      },
     };
 
     const [email, setEmail] = useState('');
@@ -73,7 +67,7 @@ const Login = () => {
                 <Heading node="h2" style={style.title}>
                   Log In
                 </Heading>
-                  <div>
+                  <div style={{padding: '.75rem .75rem 1.5rem', textAlign: 'center'}}>
                     <Words animate layer="alert">
                       {errors ? errors : " "}
                     </Words>
@@ -106,15 +100,3 @@ const Login = () => {
 }
 
 export default Login;
-
-{/* <form onSubmit={submitForm}>
-  <label>
-    Email:
-    <input type="email" name="email" onChange={setFormValues} />
-  </label>
-  <label>
-    Password:
-    <input type="password" name="password" onChange={setFormValues} />
-  </label>
-  <input type="submit" value="Log In" />
-</form>; */}

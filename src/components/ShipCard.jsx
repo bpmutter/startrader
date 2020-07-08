@@ -34,31 +34,34 @@ const ShipCard = ({ship}) => {
     return (
       <Content style={style.wrapper}>
         <Frame animate hover={true} style={style.img}>
-          <a href={`/listings/${ship.owner.id}`}>
+          <a href={`/listings/${ship.id}`}>
             <Image
               animate
-              resources={ship.img}
+              resources={ship.starship_type.ship_image}
               layer="primary"
               style={style.img}
             ></Image>
           </a>
           <Content style={style.content}>
             <h3 style={style.content.title}>
-              <a href={`/listings/${ship.id}`}>{ship.name}</a>
+              <a href={`/listings/${ship.id}`}>
+                {ship.unique_name
+                  ? ship.unique_name
+                  : ship.starship_type.type_name}
+              </a>
             </h3>
             <p style={style.content.additionalInfo}>
-              <h6>{ship.cost} credits</h6>
+              <h6>{ship.sale_price} credits</h6>
               <span>
                 <h5>
                   <Words layer="success">
-                    {ship.forSale ? "For Sale" : ""}
+                    {ship.for_sale ? "For Sale" : ""}
                   </Words>
                 </h5>
               </span>
             </p>
             <p>
-              Listing by{" "}
-              <a href={`/users/${ship.owner.id}`}>{ship.owner.name}</a>
+              Listing by <a href={`/users/${ship.user.id}`}>{ship.user.name}</a>
             </p>
           </Content>
         </Frame>

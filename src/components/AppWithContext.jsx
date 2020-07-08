@@ -1,40 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import App from './App';
 import AppContext from './Context';
 
 const AppWithContext = () => {
+    const [token, setToken] = useState(localStorage.getItem("token"));
+    const [user, setUser] = useState("");
 
-    const [token, setToken] = useState(
-      localStorage.getItem("token")
-    );
-    const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem('user'))
-    //     ()=>(async ()=>{
-    //     let [id, token] = [localStorage.getItem("id"), localStorage.getItem("token")];
-    //     id= JSON.parse(id);
-    //     try{
-    //         token = JSON.parse(token);
-    //     }catch(err){
-    //         //do nothing, keep as string
-    //     }
-    //     if (id && token) {
-    //         console.log('hola como estas')
-    //         const res = await fetch(`http://localhost:5000/users/${id}`, {
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${token}`,
-    //           },
-    //         });
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })()
-    );
+    useEffect(()=>{
+      let id = JSON.parse(localStorage.getItem("id"));
+      id = JSON.parse(id);
+      let isToken = true;
+      try {
+        isToken = !!JSON.parse(token);
+      } catch (err) {
+        //do nothing, token is string
+      }
+      if (id && isToken) {
+        (async () => {
+          const res = await fetch(`http://localhost:5000/users/${id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const {user} = await res.json();
+          setUser({user});
+          localStorage.setItem('user', user)
+        })();
+      }
+    },[user.id, token])
+    
+    
 
     const login = (token, user) => {
       localStorage.setItem("token", token);
       localStorage.setItem("id", user.id);
-      localStorage.setItem('user', JSON.stringify(user)); //TODO: remove once the real user GET route works 
+      localStorage.setItem('user', JSON.stringify(user));  
       setToken(token);
       setUser(user);
     };

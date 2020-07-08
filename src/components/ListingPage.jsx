@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom';
-import { Content, Image, Frame, Button, withStyles} from "arwes";
+import { Content, Image, Frame, Button, withStyles, Link, Loading} from "arwes";
 
 const ship = {
   img:
@@ -75,7 +75,6 @@ const styles = (theme) => ({
   },
   seller: {
     gridColumn: "2/3",
-    // gridRow: "1 / 2",
   },
   sellerContent: {
     padding: ".5rem",
@@ -107,75 +106,106 @@ const styles = (theme) => ({
 });
 
 const ListingPage = ({classes}) => { 
-    const shipId = useParams().id;
+    const shipId = parseInt(useParams().id);
+    const [ship, setShip] = useState({})
+
+    useEffect(()=>{
+      (async ()=>{
+        const res = await fetch(`http://localhost:5000/ships/${shipId}`)
+        const {star_ship} = await res.json();
+        console.log(star_ship)
+        setShip(star_ship);
+      })()
+    },[shipId, ship.id])
 
     return (
-      <Content className={classes.container}>
-        <div className={classes.img}>
-          <Image animate layer="primary" resources={ship.img}></Image>
-        </div>
-        <div className={classes.infoWrapper}>
-          <Content className={classes.mainInfo}>
-            <Frame animate level={3} corners={4}>
-              <Content className={classes.contentInFrame}>
-                <h1>{ship.name}</h1>
-                <p>Price: {ship.cost_in_credits} credits</p>
-                <p>Model: {ship.model}</p>
-                <p>Manufacturer: {ship.manufacturer}</p>
-                <p>Class: {ship.starship_class}</p>
-                {ship.forSale ? (
-                  <Button animate layer="success">
-                    Buy Now
-                  </Button>
-                ) : (
-                  <Button animate disabled>
-                    Not For Sale
-                  </Button>
-                )}
+      <>
+        {!ship.id ? (
+          <div>
+            <Loading animate />
+            <Loading animate small />
+            <div style={{ position: "relative", width: 200, height: 200 }}>
+              <Loading animate full />
+            </div>
+          </div>
+        ) : (
+          <Content className={classes.container}>
+            <div className={classes.img}>
+              <Image
+                animate
+                layer="primary"
+                resources={ship.starship_type.ship_image}
+              ></Image>
+            </div>
+            <div className={classes.infoWrapper}>
+              <Content className={classes.mainInfo}>
+                <Frame animate level={3} corners={4}>
+                  <Content className={classes.contentInFrame}>
+                    <h1>{ship.custom_name || ship.starship_type.type_name}</h1>
+                    <p>Price: {ship.sale_price} credits</p>
+                    <p>Type: {ship.starship_type.type_name}</p>
+                    <p>Model: {ship.starship_type.model}</p>
+                    <p>Manufacturer: {ship.starship_type.manufacturer}</p>
+                    <p>Class: {ship.starship_type.starship_class}</p>
+                    {ship.for_sale ? (
+                      <Button animate layer="success">
+                        Buy Now
+                      </Button>
+                    ) : (
+                      <Button animate disabled>
+                        Not For Sale
+                      </Button>
+                    )}
+                  </Content>
+                </Frame>
               </Content>
-            </Frame>
-          </Content>
-          <Content className={classes.seller}>
-            <Frame animate level={3} corners={4}>
-              <Content className={classes.sellerContent}>
-                <Content className={classes.sellerImg}>
-                  <Image resources={ship.seller.img}></Image>
-                </Content>
-                <Content className={classes.sellerInfo}>
-                  <h2>Seller Info</h2>
-                  <p>{ship.seller.name}</p>
-                  <Button>Contact Seller</Button>
-                </Content>
+              <Content className={classes.seller}>
+                <Frame animate level={3} corners={4}>
+                  <Content className={classes.sellerContent}>
+                    <Content className={classes.sellerImg}>
+                      <Image resources={ship.user.user_image}></Image>
+                    </Content>
+                    <Content className={classes.sellerInfo}>
+                      <h2>Seller Info</h2>
+                      <p>{ship.user.name}</p>
+                      <Link to={`/users/${ship.user.id}`}>
+                        <Button>Contact Seller</Button>
+                      </Link>
+                    </Content>
+                  </Content>
+                </Frame>
               </Content>
-            </Frame>
-          </Content>
-        </div>
+            </div>
 
-        <div className={classes.additionalInfo}>
-          <Frame animate level={3} corners={4}>
-            <Content className={classes.contentInFrame}>
-              <h3>Additional Info</h3>
-              <div>
-                <h4>Capacity</h4>
-                <ul>
-                  <li>Cargo: {ship.cargo_capacity}</li>
-                  <li>Consumables: {ship.consumables}</li>
-                  <li>Crew: {ship.crew}</li>
-                  <li>Passengers: {ship.passengers}</li>
-                  <li>Length: {ship.length}</li>
-                </ul>
-              </div>
-              <div>
-                <h4>Speed</h4>
-                <ul>
-                  <li>Base speed: {ship.MGLT}</li>
-                  <li>Hyperdrive Rating: {ship.hyperdrive_rating}</li>
-                </ul>
-              </div>
-            </Content>
-          </Frame>
-        </div>
-      </Content>
+            <div className={classes.additionalInfo}>
+              <Frame animate level={3} corners={4}>
+                <Content className={classes.contentInFrame}>
+                  <h3>Additional Info</h3>
+                  <div>
+                    <h4>Capacity</h4>
+                    <ul>
+                      <li>Cargo: {ship.starship_type.cargo_capacity}</li>
+                      <li>Consumables: {ship.starship_type.consumables}</li>
+                      <li>Crew: {ship.starship_type.crew}</li>
+                      <li>Passengers: {ship.starship_type.passengers}</li>
+                      <li>Length: {ship.starship_type.length}</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Speed</h4>
+                    <ul>
+                      <li>Base speed: {ship.starship_type.MGLT}</li>
+                      <li>
+                        Hyperdrive Rating: {ship.starship_type.hyperdrive_rating}
+                      </li>
+                    </ul>
+                  </div>
+                </Content>
+              </Frame>
+            </div>
+          </Content>
+        )}
+      </>
     );
 }
 
