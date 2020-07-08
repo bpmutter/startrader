@@ -57,7 +57,6 @@ const styles = (theme) => ({
 const TopHeader = ({classes}) => {
 
     const {logout, user} = useContext(appContext);
-    console.log('CURRENT USER::', user)
     const [showDropdown, changeDropdown] = useState(false);
 
     const toggleDropdown = e => {

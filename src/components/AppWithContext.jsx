@@ -5,6 +5,7 @@ import AppContext from './Context';
 const AppWithContext = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
+    const [id, setId] = useState('');
 
     useEffect(()=>{
       let id = JSON.parse(localStorage.getItem("id"));
@@ -24,7 +25,8 @@ const AppWithContext = () => {
             },
           });
           const {user} = await res.json();
-          setUser({user});
+          setUser(user);
+          setId(user.id)
           localStorage.setItem('user', user)
         })();
       }
@@ -38,6 +40,7 @@ const AppWithContext = () => {
       localStorage.setItem('user', JSON.stringify(user));  
       setToken(token);
       setUser(user);
+      setId(user.id)
     };
     const logout = () => {
       localStorage.setItem("token", null);
@@ -45,9 +48,10 @@ const AppWithContext = () => {
       localStorage.setItem("user", null);
       setToken(null);
       setUser(null);
+      setId(null);
     };
 
-    const context = { token, user, login, logout };
+    const context = { token, user, id, login, logout };
     return (
         <AppContext.Provider value={context}>
             <App/>
@@ -55,6 +59,6 @@ const AppWithContext = () => {
     )
 }
 
-export default AppWithContext
+export default AppWithContext;
 
 

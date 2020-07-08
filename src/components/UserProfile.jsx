@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Redirect } from "react-router-dom";
-import { Content, Image, Frame, Button, withStyles } from "arwes";
+import { Content, Image, Frame, Button, withStyles, Loading } from "arwes";
 import ShipResults from './ShipResults';
+import appContext from './Context';
 
 const user = { 
     id: 1, 
@@ -54,17 +55,40 @@ const styles = (theme) => ({
 
 const UserProfile = ({classes, personalProfile}) => {
     const paramId = useParams().id;
-    const userId = personalProfile ? 7 : paramId; //TODO: refactor this to get userID however the site is doing..prob w context
+    const context = useContext(appContext);
+    const id = context.user.id
+    console.log("context", paramId, context)
+    console.log("context ID::", id)
+    console.log("personal profile::", personalProfile)
+    const [user, setUser] = useState({});
     
-    let shipsForSale; //= user.ships.filter((ship) => ship.forSale === true);
 
     //TODO REFACTOR AWAY FROM LOCAL STORAGE also
-    if(paramId === userId){
-        return <Redirect to="/profile"/>
+
+    useEffect(()=>{
+      ( async ()=>{
+        console.log('derppp')
+        const res = await fetch(`http://localhost:5000/users/${personalProfile ? id : paramId}`);
+        const {user} = await res.json();
+        console.log('USER::',user)
+        setUser(user);
+      })();
+    },[paramId, personalProfile, id, user.id]);
+
+    if (paramId === id) {
+      return <Redirect to="/profile" />;
     }
 
     return (
-      <Content className={classes.profileWrapper}>
+      <>{!user.id ? 
+        <div>
+            <Loading animate />
+            <Loading animate small />
+            <div style={{ position: "relative", width: 200, height: 200 }}>
+              <Loading animate full />
+            </div>
+          </div>
+        : <Content className={classes.profileWrapper}>
         <div className={classes.profileContentWrapper}>
           <Frame animate level={3} corners={4}>
             <section className={classes.profileContent}>
@@ -80,9 +104,9 @@ const UserProfile = ({classes, personalProfile}) => {
                   {/* TODO: make button do something..load modal i guess... */}
                   {personalProfile ? <Button>Edit Profile</Button> : ""}
                 </div>
-                {personalProfile ? <p>{user.credits} credits</p> : ""}
+                {personalProfile ? <p>{user.credit} credits</p> : ""}
                 <p className={classes.profileAdditionalInfo}>
-                  <span>{user.species}</span>
+                  <span>{user.species_info.species_type}</span>
                   {" • "}
                   <span>{user.faction ? "Rebellion" : "Empire"}</span>
                 </p>
@@ -92,10 +116,11 @@ const UserProfile = ({classes, personalProfile}) => {
           </Frame>
         </div>
         <section>
-          <ShipResults title="For Sale" ships={shipsForSale} />
+          <ShipResults title="For Sale" ships={user.starships} />
         </section>
         <section>{/* TODO: CREATE AND ADD TRANSACTION TABLE */}</section>
-      </Content>
+      </Content>}</>
+      
     );
 }
 
