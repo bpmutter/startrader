@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Redirect } from "react-router-dom";
-import { Content, Image, Frame, Button, withStyles, Loading } from "arwes";
+import { Content, Image, Frame, Button, withStyles } from "arwes";
 import ShipResults from './ShipResults';
 import appContext from './Context';
+import LoadingBig from './LoadingBig';
 
 const user = { 
     id: 1, 
@@ -81,13 +82,7 @@ const UserProfile = ({classes, personalProfile}) => {
 
     return (
       <>{!user.id ? 
-        <div>
-            <Loading animate />
-            <Loading animate small />
-            <div style={{ position: "relative", width: 200, height: 200 }}>
-              <Loading animate full />
-            </div>
-          </div>
+        <LoadingBig/>
         : <Content className={classes.profileWrapper}>
         <div className={classes.profileContentWrapper}>
           <Frame animate level={3} corners={4}>

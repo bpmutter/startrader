@@ -3,7 +3,7 @@ import QuickSearch from './QuickSearch';
 import LatestShips from './LatestShips';
 import HotShips from './HotShips'
 import Frame from 'arwes/lib/Frame';
-const Homepage = () => {
+const Homepage = ({activeView}) => {
     const style = {
       main: {
         display: "flex",
@@ -23,7 +23,7 @@ const Homepage = () => {
       <>
       
       <main style={style.main}>
-        <QuickSearch style={style.quickSearch} />
+        <QuickSearch style={style.quickSearch} activeSearch/>
           <Frame
             animate
             level={3}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom';
 import { Content, Image, Frame, Button, withStyles, Link, Loading} from "arwes";
+import LoadingBig from './LoadingBig';
 
 const ship = {
   img:
@@ -121,13 +122,7 @@ const ListingPage = ({classes}) => {
     return (
       <>
         {!ship.id ? (
-          <div>
-            <Loading animate />
-            <Loading animate small />
-            <div style={{ position: "relative", width: 200, height: 200 }}>
-              <Loading animate full />
-            </div>
-          </div>
+          <LoadingBig />
         ) : (
           <Content className={classes.container}>
             <div className={classes.img}>
@@ -147,6 +142,7 @@ const ListingPage = ({classes}) => {
                     <p>Model: {ship.starship_type.model}</p>
                     <p>Manufacturer: {ship.starship_type.manufacturer}</p>
                     <p>Class: {ship.starship_type.starship_class}</p>
+                    <p>Seller Comment: {ship.seller_comment}</p>
                     {ship.for_sale ? (
                       <Button animate layer="success">
                         Buy Now
@@ -168,7 +164,7 @@ const ListingPage = ({classes}) => {
                     <Content className={classes.sellerInfo}>
                       <h2>Seller Info</h2>
                       <p>{ship.user.name}</p>
-                      <Link to={`/users/${ship.user.id}`}>
+                      <Link href={`/users/${ship.user.id}`}>
                         <Button>Contact Seller</Button>
                       </Link>
                     </Content>
@@ -196,7 +192,8 @@ const ListingPage = ({classes}) => {
                     <ul>
                       <li>Base speed: {ship.starship_type.MGLT}</li>
                       <li>
-                        Hyperdrive Rating: {ship.starship_type.hyperdrive_rating}
+                        Hyperdrive Rating:{" "}
+                        {ship.starship_type.hyperdrive_rating}
                       </li>
                     </ul>
                   </div>

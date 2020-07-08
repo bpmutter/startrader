@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { ThemeProvider, createTheme, Arwes } from "arwes";
 // import myTheme from '../theme/theme';
 import Header from './Header';
@@ -10,6 +10,7 @@ import UserProfile from './UserProfile';
 import Background from './Background'
 import Login from './Login';
 import SignUp from './SignUp';
+import CreateListing from './CreateListing';
 
 function App() {
   
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route path="/signup">
                 <SignUp />
+              </Route>
+              <Route path="/sell-ship">
+                <CreateListing/>
               </Route>
               <Route path="*">
                 {/* TODO: ADD 404 page */}

@@ -78,7 +78,7 @@ const TopHeader = ({classes}) => {
             <Link href="/" className={classes.secondary}>
               Marketplace
             </Link>
-            <Link href="/sell" className={classes.secondary}>
+            <Link href="/sell-ship" className={classes.secondary}>
               Sell Ships
             </Link>
           </div>

@@ -4,6 +4,10 @@ import appContext from "./Context";
 import Input from "./Input";
 import { Words, Button, Content, Heading } from "arwes";
 import Frame from "arwes/lib/Frame";
+import SelectOption from "./Select";
+import Radio from './Radio';
+import LabelText from './LabelText';
+import Textarea from './Textarea';
 
 const SignUp = () => {
   const style = {
@@ -25,7 +29,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const [species, setSpecies] = useState('');
+  const [species, setSpecies] = useState(1);
   const [bio, setBio] = useState('');
   const [faction, setFaction] = useState('rebellion');
   const [speciesOptions, setSpeciesOptions] = useState([]);
@@ -49,40 +53,53 @@ const SignUp = () => {
     else if (e.target.name === "name") setName(e.target.value);
     else if (e.target.name === "species") setSpecies(e.target.value);
     else if (e.target.name === "bio") setBio(e.target.value);
-    else if (e.target.name === "faction") setFaction(e.target.value);
+    else if (e.target.name === "faction") {
+      if(e.target.value === "rebellion") setFaction('rebellion');
+      else setFaction('empire');
+    }
 
   };
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log("state of state::", 
+    console.table(
         email, password, confirmPassword, name, species, bio, faction
     )
-    // if(password !== confirmPassword){ 
-    //     setErrors('It looks like you entered 2 different passwords. Please reenter your password the same in both fields and try again.');
-    //     setPassword('');
-    //     setConfirmPassword('');
-    //     document.getElementsByName('password')[0].value = '';
-    //     document.getElementsByName('confirmPassword')[0].value = '';
-    // }
-    // try {
-    //   const res = await fetch("http://localhost:5000/users/signup", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ email, password, name, species, bio, faction }),
-    //   });
-    //   const data = await res.json();
+    if(password !== confirmPassword){ 
+        setErrors('It looks like you entered 2 different passwords. Please reenter your password the same in both fields and try again.');
+        setPassword('');
+        setConfirmPassword('');
+        document.getElementsByName('password')[0].value = '';
+        document.getElementsByName('confirmPassword')[0].value = '';
+    }
+    
+    try {
+      const res = await fetch("http://localhost:5000/users/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          name,
+          species,
+          bio,
+          faction: (faction === 'rebellion' ? true : false),
+          user_image:
+            "https://upload.wikimedia.org/wikipedia/en/4/4b/Jjportrait.jpg",
+        }),
+      });
+      const data = await res.json();
 
-    //   if (data.error) {
-    //     setErrors(data.error);
-    //     return;
-    //   }
-    //   login(data.access_token, data.user);
-    //   setLoggedIn(true);
-    // } catch (err) {
-    //   alert(
-    //     "Oh no, it looks like there was some force interference causing problems with our server. Please try again later."
-    //   );
-    // }
+      if (data.error) {
+        setErrors(data.error);
+        return;
+      }
+      login(data.access_token, data.user);
+      setLoggedIn(true);
+    } catch (err) {
+      alert(
+        "Oh no, it looks like there was some force interference causing problems with our server. Please try again later."
+      );
+    }
   };
 
   return (
@@ -110,12 +127,14 @@ const SignUp = () => {
                     type="email"
                     name="email"
                     onChange={setFormValues}
+                    required
                   />
                   <Input
                     label="Name: "
                     type="text"
                     name="name"
                     onChange={setFormValues}
+                    required
                   />
 
                   <Input
@@ -123,59 +142,47 @@ const SignUp = () => {
                     type="password"
                     name="password"
                     onChange={setFormValues}
+                    required
                   />
                   <Input
                     label="Confirm password: "
                     type="password"
                     name="confirmPassword"
                     onChange={setFormValues}
+                    required
                   />
-                  <div>
-                    <label>
-                      <span>Species: </span>
-                      <select name="species" onChange={setFormValues}>
-                        {speciesOptions.map((singleSpecies) => {
-                          return (
-                            <option name="species" value={singleSpecies.id}>
-                              {singleSpecies.species_type}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </label>
-                  </div>
-                  <div>
-                    <span>Faction: </span>
-                    <span className="radio">
-                      <label>
-                        <input
-                          name="faction"
-                          type="radio"
-                          value="rebellion"
-                          checked={faction === "rebellion"}
-                          onChange={setFormValues}
-                        />
-                        Rebellion
-                      </label>
-                    </span>
-                    <span className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          name="faction"
-                          value="empire"
-                          checked={faction === "empire"}
-                          onChange={setFormValues}
-                        />
-                        Empire
-                      </label>
-                    </span>
-                  </div>
-                  <Input
+                  <SelectOption
+                    label="Species: "
+                    name="species"
+                    onChange={setFormValues}
+                    options={speciesOptions}
+                    optionValueId={"id"}
+                    optionInnerContent={"species_type"}
+                    required
+                  />
+                  <p style={{padding: '.5rem 0'}}>
+                    <LabelText label="Faction: " required/>
+                    <Radio
+                      name="faction"
+                      value="rebellion"
+                      checked={faction === "rebellion"}
+                      onChange={setFormValues}
+                      label="Rebellion"
+                    />
+                    <Radio
+                      name="faction"
+                      value="empire"
+                      checked={faction === "empire"}
+                      onChange={setFormValues}
+                      label="Empire"
+                    />
+                  </p>
+                  <Textarea
                     label="Bio: "
                     type="textarea"
                     name="bio"
                     onChange={setFormValues}
+                    required
                   />
                   <p style={{ textAlign: "center" }}>
                     <Button>Sign Up</Button>
