@@ -75,10 +75,10 @@ const TopHeader = ({classes}) => {
                 StarTrader
               </Heading>
             </Link>
-            <Link href="#" className={classes.secondary}>
+            <Link href="/" className={classes.secondary}>
               Marketplace
             </Link>
-            <Link href="#" className={classes.secondary}>
+            <Link href="/sell" className={classes.secondary}>
               Sell Ships
             </Link>
           </div>
@@ -118,7 +118,7 @@ const TopHeader = ({classes}) => {
                           <Link href="/profile">Profile</Link>
                         </li>
                         <li>
-                          <Link href="/sell-ship">Sell Ship</Link>
+                          <Link href="/sell">Sell Ship</Link>
                         </li>
                         <li>
                           <Link href="/logout" onClick={logoutUser}>
