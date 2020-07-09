@@ -31,7 +31,7 @@ const AppWithContext = () => {
           localStorage.setItem('user', user)
         })();
       }
-    },[user.id, token])
+    },[token])
     
     
 

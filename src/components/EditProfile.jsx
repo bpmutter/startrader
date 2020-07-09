@@ -9,7 +9,7 @@ import Radio from "./Radio";
 import LabelText from "./LabelText";
 import Textarea from "./Textarea";
 import {FaTimesCircle} from 'react-icons/fa'
-const EditProfile = ({closeModal}) => {
+const EditProfile = ({closeModal, renderProfile}) => {
   const style = {
     container: {
       padding: "2rem",
@@ -88,16 +88,31 @@ const EditProfile = ({closeModal}) => {
         email, name, species, bio, faction: faction === "rebellion", user_image: userImage
       })
     });
+    const data = res.json();
+    if(data.error){
+      setErrors(data.error);
+    } else{
+      closeModal();
+      renderProfile();
+    }
 
   };
-  const updateProfile = () =>{
-      console.log("update profile!")
-  }
   const deleteAccount = async () => {
-      console.log("delete account!!");
-      const res = await fetch(`http://localhost:5000/users/${id}`)
-      logout();
-      setLoggedIn(false)
+      const res = await fetch(`http://localhost:5000/users/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      if(data.error){
+        setErrors(data.error);
+      }else {
+        logout();
+        setLoggedIn(false);
+      }
+      
   }
   return (
     <div style={style.contentWrapper}>
@@ -186,7 +201,7 @@ const EditProfile = ({closeModal}) => {
               justifyContent: "space-around",
             }}
           >
-            <Button onClick={updateProfile}>Update Profile</Button>
+            <Button onClick={submitForm}>Update Profile</Button>
             <Button layer="alert" onClick={deleteAccount}>
               Delete Account
             </Button>

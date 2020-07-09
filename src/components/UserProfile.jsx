@@ -100,11 +100,8 @@ const UserProfile = ({classes, personalProfile}) => {
                       <h1>{user.name}</h1>
                       {/* TODO: make button do something..load modal i guess... */}
                       {personalProfile ? (
-                        
-                        <EditProfileModal/>
-                      ) : (
-                        null
-                      )}
+                        <EditProfileModal renderProfile={() => triggerRender()} />
+                      ) : null}
                     </div>
                     {personalProfile ? <p>{user.credit} credits</p> : ""}
                     <p className={classes.profileAdditionalInfo}>
@@ -119,7 +116,7 @@ const UserProfile = ({classes, personalProfile}) => {
             </div>
             <section>
               {/* <ShipResults title="For Sale" ships={user.starships} /> */}
-              <UserShipsForSale name={user.name} id={user.id} user={user}/>
+              <UserShipsForSale name={user.name} id={user.id} user={user} />
             </section>
             <section>{/* TODO: CREATE AND ADD TRANSACTION TABLE */}</section>
           </Content>
