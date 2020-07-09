@@ -30,6 +30,8 @@ const Textarea = (props) => {
       backgroundColor: myTheme.color.background.main,
       color: myTheme.color.primary.base,
       fontSize: myTheme.font.baseSize,
+      fontFamily:
+        "'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif",
     },
   };
   return (

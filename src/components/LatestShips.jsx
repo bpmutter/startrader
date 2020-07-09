@@ -3,7 +3,7 @@ import ShipResults from './ShipResults';
 
 
 const LatestShips = () => {
-    const [latest,setLatest] = useState([]);
+    const [latest,setLatest] = useState(null);
     useEffect( ()=>{
       (async ()=>{
         const res = await fetch("http://localhost:5000/ships/all");

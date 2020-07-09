@@ -51,9 +51,9 @@ const Homepage = () => {
           layer="primary"
           style={style.frame}
         >
-          {activeQuery === "latest" ? <LatestShips/> : ""}
-          {activeQuery === "unique" ? <UniqueShips/> : ""}
-          {activeQuery !== "unique" && activeQuery !== "latest" ? <ShipsByType type={activeQuery}/> : ""}
+          {activeQuery === "latest" && <LatestShips/>}
+          {activeQuery === "unique" && <UniqueShips/>}
+          {activeQuery !== "unique" && activeQuery !== "latest" && <ShipsByType type={activeQuery}/>}
 
         </Frame>
       </main>

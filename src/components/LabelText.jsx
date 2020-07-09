@@ -4,7 +4,7 @@ import Words from 'arwes/lib/Words';
 
 const styles = {
   labelText: {
-      width: 150,
+      width: 160,
       display: "inline-block",
       paddingRight: "1rem",
       textAlign: "right",
@@ -14,11 +14,19 @@ const styles = {
 const Label = withStyles(styles)( ({classes, label, required}) => {
 
     return (
+      <Words layer="primary">
         <span className={classes.labelText}>
-            {label}
-            {required ? <span><Words layer="alert">*</Words></span>: ""}
+          {label}
+          {required ? (
+            <span>
+              <Words layer="alert">*</Words>
+            </span>
+          ) : (
+            ""
+          )}
         </span>
-    )
+      </Words>
+    );
 })
 
 export default Label;

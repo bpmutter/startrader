@@ -1,5 +1,6 @@
 import React from 'react';
 import withStyles from 'arwes/lib/tools/withStyles';
+import {Words} from 'arwes';
 
 const styles = { 
     radio: {
@@ -10,8 +11,9 @@ const styles = {
 
 const Radio = withStyles(styles)( ({classes, name, value, label, onChange, checked})=>{
 
-    return (        
-        <div className={classes.radio}>
+    return (
+      <div className={classes.radio}>
+        <Words layer="primary">
           <label>
             <input
               name={name}
@@ -22,8 +24,8 @@ const Radio = withStyles(styles)( ({classes, name, value, label, onChange, check
             />
             {label}
           </label>
-        </div>
-        
+        </Words>
+      </div>
     );
 })
 export default Radio;

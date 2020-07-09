@@ -45,9 +45,7 @@ const ShipCard = ({ship}) => {
           <Content style={style.content}>
             <h3 style={style.content.title}>
               <a href={`/listings/${ship.id}`}>
-                {ship.unique_name
-                  ? ship.unique_name
-                  : ship.starship_type.type_name}
+                {ship.custom_name || ship.starship_type.type_name}
               </a>
             </h3>
             <p style={style.content.additionalInfo}>

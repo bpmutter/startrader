@@ -12,6 +12,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import CreateListing from './CreateListing';
 import EditProfile from './EditProfile';
+import EditListingModal from './EditListingModal';
 
 function App() {
   
@@ -51,6 +52,9 @@ function App() {
                 </Route>
                 <Route path="/sell-ship">
                   <CreateListing />
+                </Route>
+                <Route path="/testing">
+                  <EditListingModal/>
                 </Route>
                 <Route path="*">
                   {/* TODO: ADD 404 page */}

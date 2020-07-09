@@ -15,6 +15,7 @@ const myTheme = {
     // },
     primary: {
       base: "#26dafd",
+      baseRGB: [38, 218, 253]
     },
     background: {
       main: "#021114",

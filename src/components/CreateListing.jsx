@@ -35,7 +35,6 @@ const  CreateListing = () => {
 
   const [errors, setErrors] = useState(null);
   const { user: {id}, token } = useContext(appContext);
-  console.log("AUTH TOKEN::", token);
   useEffect(() => {
     (async () => {
       const res = await fetch("http://localhost:5000/ships/types");

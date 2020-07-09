@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShipResults from "./ShipResults";
 
 const UniqueShips = () => {
-  const [ships, setShips] = useState([]);
+  const [ships, setShips] = useState(null);
   useEffect(() => {
     (async () => {
       const res = await fetch("http://localhost:5000/ships/uniques");

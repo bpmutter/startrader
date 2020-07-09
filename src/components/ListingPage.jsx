@@ -1,38 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {useParams} from 'react-router-dom';
-import { Content, Image, Frame, Button, withStyles, Link, Loading} from "arwes";
+import { Content, Image, Frame, Button, withStyles, Link} from "arwes";
 import LoadingBig from './LoadingBig';
+import appContext from './Context';
+import EditListingModal from './EditListingModal';
 
-const ship = {
-  img:
-    "https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/starships/09.jpg",
-  MGLT: "10 MGLT",
-  cargo_capacity: "1000000000000",
-  consumables: "3 years",
-  cost_in_credits: "1000000000000",
-  created: "2014-12-10T16:36:50.509000Z",
-  crew: "342953",
-  edited: "2014-12-10T16:36:50.509000Z",
-  hyperdrive_rating: "4.0",
-  length: "120000",
-  manufacturer:
-    "Imperial Department of Military Research, Sienar Fleet Systems",
-  max_atmosphering_speed: "n/a",
-  model: "DS-1 Orbital Battle Station",
-  name: "Death Star",
-  passengers: "843342",
-  films: ["https://swapi.dev/api/films/1/"],
-  pilots: [],
-  starship_class: "Deep Space Mobile Battlestation",
-  url: "https://swapi.dev/api/starships/9/",
-  forSale: false,
-  seller: {
-    name: "Darth Vader",
-    img:
-      "https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/04.jpg",
-    id: 1,
-  },
-};
 const styles = (theme) => ({
   contentInFrame: {
     padding: ".5rem",
@@ -108,7 +80,8 @@ const styles = (theme) => ({
 
 const ListingPage = ({classes}) => { 
     const shipId = parseInt(useParams().id);
-    const [ship, setShip] = useState({})
+    const {id, user} = useContext(appContext);
+    const [ship, setShip] = useState({});
 
     useEffect(()=>{
       (async ()=>{
@@ -119,11 +92,19 @@ const ListingPage = ({classes}) => {
       })()
     },[shipId, ship.id])
 
+    const triggerRender = () => {
+      (async () => {
+        const res = await fetch(`http://localhost:5000/ships/${shipId}`);
+        const { star_ship } = await res.json();
+        console.log(star_ship);
+        setShip(star_ship);
+      })();
+    }
     return (
       <>
         {!ship.id ? (
           <LoadingBig />
-        ) : (
+        ) : ( 
           <Content className={classes.container}>
             <div className={classes.img}>
               <Image
@@ -144,7 +125,12 @@ const ListingPage = ({classes}) => {
                     <p>Manufacturer: {ship.starship_type.manufacturer}</p>
                     <p>Class: {ship.starship_type.starship_class}</p>
                     <p>Seller Comment: {ship.seller_comment}</p>
-                    {ship.for_sale ? (
+                    {ship.user.id === id ? (
+                      <EditListingModal
+                        listing={ship}
+                        rerenderParent={()=>triggerRender()}
+                      />
+                    ) : ship.for_sale ? (
                       <Button animate layer="success">
                         Buy Now
                       </Button>
@@ -166,7 +152,7 @@ const ListingPage = ({classes}) => {
                       <h2>Seller Info</h2>
                       <p>{ship.user.name}</p>
                       <Link href={`/users/${ship.user.id}`}>
-                        <Button>Contact Seller</Button>
+                        <Button>Go to Profile</Button>
                       </Link>
                     </Content>
                   </Content>

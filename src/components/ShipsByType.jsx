@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShipResults from "./ShipResults";
 
 const UniqueShips = ({type}) => {
-  const [ships, setShips] = useState([]);
+  const [ships, setShips] = useState(null);
   useEffect(() => {
     (async () => {
       console.log('TYPE::', type)
@@ -12,7 +12,7 @@ const UniqueShips = ({type}) => {
       console.log('LATEST SHIPS::', data.star_ships)
     })();
   }, [type]);
-  return <ShipResults title={type} ships={ships} />;
+  return <ShipResults title={`${type}s`} ships={ships} />;
 };
 
 export default UniqueShips;
