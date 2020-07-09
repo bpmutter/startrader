@@ -79,7 +79,7 @@ const TopHeader = ({classes}) => {
               Marketplace
             </Link>
             <Link href="/sell-ship" className={classes.secondary}>
-              Sell Ships
+              Sell Ship
             </Link>
           </div>
 
@@ -118,7 +118,7 @@ const TopHeader = ({classes}) => {
                           <Link href="/profile">Profile</Link>
                         </li>
                         <li>
-                          <Link href="/sell">Sell Ship</Link>
+                          <Link href="/sell-ship">Sell Ship</Link>
                         </li>
                         <li>
                           <Link href="/logout" onClick={logoutUser}>

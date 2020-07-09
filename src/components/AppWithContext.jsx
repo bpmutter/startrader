@@ -18,6 +18,7 @@ const AppWithContext = () => {
       }
       if (id && isToken) {
         (async () => {
+          
           const res = await fetch(`http://localhost:5000/users/${id}`, {
             headers: {
               "Content-Type": "application/json",

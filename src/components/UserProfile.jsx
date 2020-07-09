@@ -4,18 +4,8 @@ import { Content, Image, Frame, Button, withStyles } from "arwes";
 import ShipResults from './ShipResults';
 import appContext from './Context';
 import LoadingBig from './LoadingBig';
+import UserShipsForSale from './UserShipsForSale';
 
-const user = { 
-    id: 1, 
-    name: 'Luke Skywalker', 
-    'email': 'lukeskywalker@aol.com',
-    'species': 'Human', 
-    'bio': 'Luke Skywalker was a Tatooine farmboy who rose from humble beginnings to become one of the greatest Jedi the galaxy has ever known.',
-    'faction': true, 
-    'credits': 1000000, 
-    'user_image': 'https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/characters/01.jpg', 
-    'force_points': 0
-}
 
 const styles = (theme) => ({
   profileWrapper: {
@@ -60,7 +50,7 @@ const UserProfile = ({classes, personalProfile}) => {
     const id = context.user.id
     console.log("context", paramId, context)
     console.log("context ID::", id)
-    console.log("personal profile::", personalProfile)
+
     const [user, setUser] = useState({});
     
 
@@ -111,7 +101,8 @@ const UserProfile = ({classes, personalProfile}) => {
           </Frame>
         </div>
         <section>
-          <ShipResults title="For Sale" ships={user.starships} />
+          {/* <ShipResults title="For Sale" ships={user.starships} /> */}
+          <UserShipsForSale id={user.id} />
         </section>
         <section>{/* TODO: CREATE AND ADD TRANSACTION TABLE */}</section>
       </Content>}</>

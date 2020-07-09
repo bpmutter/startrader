@@ -32,7 +32,7 @@ const styles = (theme) => ({
   },
 });
 
-const SelectOption = withStyles(styles)(({classes, label, onChange, name, options, optionValueId, optionInnerContent, required})=>{
+const SelectOption = withStyles(styles)(({classes, label, onChange, name, options, optionValueId, optionInnerContent, required, selected})=>{
 
     return (
       <div>
@@ -47,7 +47,11 @@ const SelectOption = withStyles(styles)(({classes, label, onChange, name, option
             <select name={name} onChange={onChange} className={classes.select} required={required}>
               {options.map((option) => {
                 return (
-                  <option name={name} value={option[optionValueId]}>
+                  <option
+                    name={name}
+                    value={option[optionValueId]}
+                    selected={selected === option[optionValueId]}
+                  >
                     {option[optionInnerContent]}
                   </option>
                 );

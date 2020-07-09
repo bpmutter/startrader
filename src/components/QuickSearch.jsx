@@ -1,7 +1,7 @@
 import React from 'react';
 import {Frame, Button, Line} from 'arwes';
 
-const QuickSearch = () => {
+const QuickSearch = ({setQuery}) => {
     const style = {
       wrapper: {
         display: "flex",
@@ -17,14 +17,18 @@ const QuickSearch = () => {
         margin: ".5rem .5rem",
       },
     };
+
+    const query = e => {
+      setQuery(e.target.name)
+    }
     return (
       <>
         <div style={style.wrapper}>
-            <Button style={style.button}>Latest</Button>
-            <Button style={style.button}>Unique Ships</Button>
-            <Button style={style.button}>Starfighters</Button>
-            <Button style={style.button}>High Capacity</Button>
-            <Button style={style.button}>Bargains</Button>
+            <Button style={style.button} onClick={query} name="latest">Latest</Button>
+            <Button style={style.button} onClick={query} name="unique">Unique Ships</Button>
+            <Button style={style.button} onClick={query} name="starfighters">Starfighters</Button>
+            <Button style={style.button} onClick={query} name="high_capacity">High Capacity</Button>
+            <Button style={style.button} onClick={query} name="bargains">Bargains</Button>
         </div>
       </>
     );

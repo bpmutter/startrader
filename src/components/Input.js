@@ -44,6 +44,7 @@ const Input = (props) => {
             name={props.name}
             onChange={props.onChange}
             required={props.required}
+            value={props.value}
           ></input>
         </Frame>
       </p>
