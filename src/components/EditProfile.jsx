@@ -81,7 +81,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
       body: JSON.stringify({ 
         email, name, species, bio, faction: faction === "rebellion", user_image: userImage
@@ -101,7 +101,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: token,
         },
       });
       const data = await res.json();

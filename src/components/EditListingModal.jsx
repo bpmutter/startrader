@@ -116,7 +116,7 @@ const EditListingModal = ({ listing, rerenderParent }) => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
           },
           body: JSON.stringify({
             ship_type,

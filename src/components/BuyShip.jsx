@@ -26,7 +26,7 @@ const BuyShip = ({ ship, rerenderParent, closeModal }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
       body: JSON.stringify({
         buyer: id,
