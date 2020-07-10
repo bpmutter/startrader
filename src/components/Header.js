@@ -7,7 +7,7 @@ import Button from 'arwes/lib/Button';
 const styles = (theme) => ({
   navBar: {
     display: "flex",
-    padding: ".5rem 1.5rem",
+    padding: ".75rem 1.5rem",
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -15,14 +15,14 @@ const styles = (theme) => ({
     display: "inline-block",
   },
   mainTitle: {
-    fontSize: "2rem",
+    fontSize: "3rem",
     display: "inline-block",
     margin: 0,
     paddingRight: "1rem",
   },
   secondary: {
     padding: " 0 .5rem",
-    fontSize: "1.25rem",
+    fontSize: "1.5rem",
     fontWeight: 600,
   },
   icon: {
@@ -71,7 +71,7 @@ const TopHeader = ({classes}) => {
         <nav className={classes.navBar}>
           <div className={classes.navLinks}>
             <Link href="/">
-              <Heading node="h2" className={`${classes.mainTitle} title-style`}>
+              <Heading node="h2" style={{fontSize: '1.75rem'}} className={`${classes.mainTitle} title-style`}>
                 StarTrader
               </Heading>
             </Link>
