@@ -115,19 +115,26 @@ const ListingPage = ({classes}) => {
               <Content className={classes.mainInfo}>
                 <Frame animate level={3} corners={4}>
                   <Content className={classes.contentInFrame}>
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
                       <h1>
                         {ship.custom_name || ship.starship_type.type_name}
                       </h1>
                       {ship.user.id === id ? (
-                        ship.for_sale ? (<Button animate layer="success">
-                          For Sale
-                        </Button>
-                      ) : (
-                        <Button animate disabled>
-                          Not For Sale
-                        </Button>)) : null
-                      }
+                        ship.for_sale ? (
+                          <Button animate layer="success">
+                            For Sale
+                          </Button>
+                        ) : (
+                          <Button animate disabled>
+                            Not For Sale
+                          </Button>
+                        )
+                      ) : null}
                     </div>
                     <p>Price: {ship.sale_price} credits</p>
                     <p>Lightyears Traveled: {ship.lightyears_traveled}</p>
@@ -138,12 +145,12 @@ const ListingPage = ({classes}) => {
                     <p>Seller Comment: {ship.seller_comment}</p>
                     <p>
                       {ship.user.id === id ? (
-                        <EditListingModal listing={ship} />
-                      ) : ship.for_sale ? (
-                        <BuyShipModal
-                          ship={ship}
+                        <EditListingModal
+                          listing={ship}
                           rerenderParent={triggerRender}
                         />
+                      ) : ship.for_sale ? (
+                        <BuyShipModal ship={ship} />
                       ) : (
                         <Button animate disabled>
                           Not For Sale

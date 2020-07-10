@@ -9,7 +9,6 @@ const UniqueShips = ({type}) => {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/class/${type}`);
       const data = await res.json();
       setShips(data.star_ships);
-      console.log('LATEST SHIPS::', data.star_ships)
     })();
   }, [type]);
   return <ShipResults title={`${type}s`} ships={ships} />;
