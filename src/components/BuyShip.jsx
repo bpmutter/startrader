@@ -1,14 +1,20 @@
 import React, {useContext} from 'react';
 import appContext from './Context';
 import { Button, Heading, Link } from "arwes";
-
+import {FaTimesCircle} from 'react-icons/fa'
 const style = {
     wrapper: {padding: '2rem'},
     buttonContainer: {
         paddingTop: '1rem',
         display: 'flex',
         justifyContent: 'space-evenly'
+    },
+    exitButton: {
+      float: 'right',
+      postion: 'relative',
+      bottom: 15,
     }
+
 }
 const BuyShip = ({ ship, rerenderParent, closeModal }) => {
   const { user, id, token } = useContext(appContext);
@@ -41,6 +47,9 @@ const BuyShip = ({ ship, rerenderParent, closeModal }) => {
   };
   return (
     <div style={style.wrapper}>
+      <Button onClick={closeModal} style={style.exitButton}>
+        <FaTimesCircle />
+      </Button>
       <Heading node="h3">Buy {shipName}</Heading>
       {id ? (
         userCanBuy ? (

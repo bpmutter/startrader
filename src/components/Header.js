@@ -66,7 +66,6 @@ const TopHeader = ({classes}) => {
       logout();
     }
     return (
-      // <div style={{ padding: 20 }}>
       <Header animate layer="header">
         <nav className={classes.navBar}>
           <div className={classes.navLinks}>
@@ -137,7 +136,6 @@ const TopHeader = ({classes}) => {
           )}
         </nav>
       </Header>
-      // </div>
     );
 }
 

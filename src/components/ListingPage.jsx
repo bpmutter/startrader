@@ -8,7 +8,7 @@ import BuyShipModal from './BuyShipModal';
 
 const styles = (theme) => ({
   contentInFrame: {
-    padding: ".5rem",
+    padding: "1.5rem",
   },
   container: {
     padding: "1.5rem",
@@ -35,7 +35,7 @@ const styles = (theme) => ({
     width: "100%",
     height: "100%",
     margin: ".75rem",
-    padding: ".5rem",
+    padding: "1rem",
     gridColumn: "2/3",
     gridRow: "1 /3",
     [`@media (max-width: ${theme.responsive.medium + 1}px)`]: {
@@ -83,12 +83,11 @@ const ListingPage = ({classes}) => {
     const shipId = parseInt(useParams().id);
     const {id, user} = useContext(appContext);
     const [ship, setShip] = useState({});
-
     useEffect(()=>{
       (async ()=>{
         const res = await fetch(`http://localhost:5000/ships/${shipId}`)
         const {star_ship} = await res.json();
-        console.log(star_ship)
+        console.log(star_ship);
         setShip(star_ship);
       })()
     },[shipId, ship.id])
@@ -116,7 +115,20 @@ const ListingPage = ({classes}) => {
               <Content className={classes.mainInfo}>
                 <Frame animate level={3} corners={4}>
                   <Content className={classes.contentInFrame}>
-                    <h1>{ship.custom_name || ship.starship_type.type_name}</h1>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                      <h1>
+                        {ship.custom_name || ship.starship_type.type_name}
+                      </h1>
+                      {ship.user.id === id ? (
+                        ship.for_sale ? (<Button animate layer="success">
+                          For Sale
+                        </Button>
+                      ) : (
+                        <Button animate disabled>
+                          Not For Sale
+                        </Button>)) : null
+                      }
+                    </div>
                     <p>Price: {ship.sale_price} credits</p>
                     <p>Lightyears Traveled: {ship.lightyears_traveled}</p>
                     <p>Type: {ship.starship_type.type_name}</p>
@@ -124,18 +136,20 @@ const ListingPage = ({classes}) => {
                     <p>Manufacturer: {ship.starship_type.manufacturer}</p>
                     <p>Class: {ship.starship_type.starship_class}</p>
                     <p>Seller Comment: {ship.seller_comment}</p>
-                    {ship.user.id === id ? (
-                      <EditListingModal listing={ship} />
-                    ) : ship.for_sale ? (
-                      <BuyShipModal
-                        ship={ship}
-                        rerenderParent={triggerRender}
-                      />
-                    ) : (
-                      <Button animate disabled>
-                        Not For Sale
-                      </Button>
-                    )}
+                    <p>
+                      {ship.user.id === id ? (
+                        <EditListingModal listing={ship} />
+                      ) : ship.for_sale ? (
+                        <BuyShipModal
+                          ship={ship}
+                          rerenderParent={triggerRender}
+                        />
+                      ) : (
+                        <Button animate disabled>
+                          Not For Sale
+                        </Button>
+                      )}
+                    </p>
                   </Content>
                 </Frame>
               </Content>

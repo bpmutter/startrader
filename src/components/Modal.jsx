@@ -45,7 +45,7 @@ const style = {
   },
   frame: {
     backgroundColor: myTheme.color.background.main,
-    margin: "5px",
+    margin: "2rem",
   },
 };
 
