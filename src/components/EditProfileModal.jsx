@@ -4,7 +4,7 @@ import EditProfile from './EditProfile';
 
 const EditProfileModal = ({ user, renderProfile, buttonStyles }) => {
   return (
-    <Modal buttonText="Edit Profile" buttonStyles={buttonStyles}>
+    <Modal buttonText="Account" buttonStyles={buttonStyles}>
       <EditProfile renderProfile={() => renderProfile()} />
     </Modal>
   );

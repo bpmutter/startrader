@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import appContext from "./Context";
 import Input from "./Input";
-import { Words, Button, Heading } from "arwes";
+import { Words, Button, Heading, Line } from "arwes";
 import SelectOption from "./Select";
 import Radio from "./Radio";
 import LabelText from "./LabelText";
@@ -11,7 +11,7 @@ import {FaTimesCircle} from 'react-icons/fa'
 const EditProfile = ({closeModal, renderProfile}) => {
   const style = {
     container: {
-      padding: "2rem",
+      // padding: "2rem",
       maxWidth: 600,
       margin: "0 auto",
     },
@@ -22,6 +22,13 @@ const EditProfile = ({closeModal, renderProfile}) => {
     contentWrapper: {
       margin: "1rem",
     },
+    formWrapper: {
+      marginBottom: '1.5rem'
+    },
+    buttonWrapper: {
+      display: 'flex',
+      justifyContent: 'center'
+    }
   };
 
   const [email, setEmail] = useState("");
@@ -91,6 +98,9 @@ const EditProfile = ({closeModal, renderProfile}) => {
     }
 
   };
+  const changePassword = async () => {
+    //do stuff
+  }
   const deleteAccount = async () => {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/delete/${id}`, {
         method: "DELETE",
@@ -104,105 +114,134 @@ const EditProfile = ({closeModal, renderProfile}) => {
         setErrors(data.error);
       }else {
         logout();
+        closeModal();
         setLoggedIn(false);
       }
       
   }
   return (
-    <div style={style.contentWrapper}>
-      <Button onClick={closeModal}>
-        <FaTimesCircle />
-      </Button>
-      <Heading node="h2" style={style.title}>
-        Edit Profile
-      </Heading>
-      <div style={{ padding: ".75rem .75rem 1.5rem", textAlign: "center" }}>
-        <Words animate layer="alert">
-          {errors ? errors : " "}
-        </Words>
-      </div>
-      <div>
-        <form onSubmit={submitForm} style={style.loginForm}>
-          <Input
-            label="Email: "
-            type="email"
-            name="email"
-            onChange={setFormValues}
-            required
-            value={email}
-          />
-          <Input
-            label="Name: "
-            type="text"
-            name="name"
-            onChange={setFormValues}
-            required
-            value={name}
-          />
-          <SelectOption
-            label="Species: "
-            name="species"
-            onChange={setFormValues}
-            options={speciesOptions}
-            optionValueId={"id"}
-            optionInnerContent={"species_type"}
-            required
-            selected={species}
-          />
-          <p style={{ padding: ".5rem 0" }}>
-            <LabelText label="Faction: " required />
-            <Radio
-              name="faction"
-              value="rebellion"
-              checked={faction === "rebellion"}
+    <>
+      <div style={style.contentWrapper}>
+        <Button onClick={closeModal}>
+          <FaTimesCircle />
+        </Button>
+        <Heading node="h2" style={style.title}>
+          Account
+        </Heading>
+        <div style={{ padding: ".5rem .75rem .5rem", textAlign: "center" }}>
+          <Words animate layer="alert">
+            {errors ? errors : " "}
+          </Words>
+        </div>
+        <div style={style.formWrapper}>
+          <form onSubmit={submitForm} style={style.loginForm}>
+            <Heading node="h3">Change Profile</Heading>
+            <Line animate />
+            <Input
+              label="Email: "
+              type="email"
+              name="email"
               onChange={setFormValues}
-              label="Rebellion"
+              required
+              value={email}
             />
-            <Radio
-              name="faction"
-              value="empire"
-              checked={faction === "empire"}
+            <Input
+              label="Name: "
+              type="text"
+              name="name"
               onChange={setFormValues}
-              label="Empire"
+              required
+              value={name}
             />
-          </p>
-          <Textarea
-            label="Bio: "
-            type="textarea"
-            name="bio"
-            onChange={setFormValues}
-            required
-            value={bio}
-          />
-          <Input
-            label="New Password: "
-            type="password"
-            name="password"
-            onChange={setFormValues}
-          />
-          <Input
-            label="Confirm New Password: "
-            type="password"
-            name="confirmPassword"
-            onChange={setFormValues}
-            required
-          />
-          <p
-            style={{
-              marginTop: "2rem",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "space-around",
-            }}
-          >
-            <Button onClick={submitForm}>Update Profile</Button>
-            <Button layer="alert" onClick={deleteAccount}>
-              Delete Account
-            </Button>
-          </p>
-        </form>
+            <SelectOption
+              label="Species: "
+              name="species"
+              onChange={setFormValues}
+              options={speciesOptions}
+              optionValueId={"id"}
+              optionInnerContent={"species_type"}
+              required
+              selected={species}
+            />
+            <p style={{ padding: ".5rem 0" }}>
+              <LabelText label="Faction: " required />
+              <Radio
+                name="faction"
+                value="rebellion"
+                checked={faction === "rebellion"}
+                onChange={setFormValues}
+                label="Rebellion"
+              />
+              <Radio
+                name="faction"
+                value="empire"
+                checked={faction === "empire"}
+                onChange={setFormValues}
+                label="Empire"
+              />
+            </p>
+            <Textarea
+              label="Bio: "
+              type="textarea"
+              name="bio"
+              onChange={setFormValues}
+              required
+              value={bio}
+            />
+           
+            <div style={style.buttonWrapper}>
+              <Button onClick={submitForm}>
+                Update Profile
+              </Button>
+            </div>
+          </form>
+        </div>
+        <div style={style.formWrapper}>
+          <form onSubmit={changePassword} style={style.loginForm}>
+            <Heading node="h3">Change Password</Heading>
+            <Line animate />
+            <Input
+              label="Old Password: "
+              type="password"
+              name="oldPassword"
+              onChange={setFormValues}
+            />
+            <Input
+              label="New Password: "
+              type="password"
+              name="confirmPassword"
+              onChange={setFormValues}
+              required
+            />
+            <Input
+              label="Confirm New Password: "
+              type="password"
+              name="confirmPassword"
+              onChange={setFormValues}
+              required
+            />
+            <div style={style.buttonWrapper}>
+              <Button>Change Password</Button>
+            </div>
+          </form>
+        </div>
+        <div style={style.formWrapper}>
+          <form onSubmit={deleteAccount} style={style.loginForm}>
+            <Heading node="h3">
+              <Words layer="alert">Delete Account</Words>
+            </Heading>
+            <Line animate />
+            <p>
+              <em>Warning:</em> once you click this button, your account will be
+              lost to the galaxy forever.
+            </p>
+            <div style={style.buttonWrapper}>
+              <Button layer="alert">Delete Account</Button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
