@@ -49,17 +49,28 @@ const style = {
   },
 };
 
-const CustomModal = ({ children, buttonText, buttonLayer, contentLabel}) => {
-  
+const CustomModal = ({
+  children,
+  buttonText,
+  buttonLayer,
+  buttonStyles,
+  contentLabel,
+}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  let childrenArr = React.Children.toArray(children); 
+  let childrenArr = React.Children.toArray(children);
   if (childrenArr.length === 1) {
-    childrenArr = React.cloneElement(childrenArr[0], { openModal: ()=>openModal(), closeModal: ()=>closeModal() });
+    childrenArr = React.cloneElement(childrenArr[0], {
+      openModal: () => openModal(),
+      closeModal: () => closeModal(),
+    });
   } else if (childrenArr.length > 0) {
-    childrenArr = childrenArr.map(child=> React.cloneElement(child, { openModal: ()=>openModal(), closeModal: ()=>closeModal() }));
+    childrenArr = childrenArr.map((child) =>
+      React.cloneElement(child, {
+        openModal: () => openModal(),
+        closeModal: () => closeModal(),
+      })
+    );
   }
-
-  
 
   // let subtitle;
   function openModal() {
@@ -76,7 +87,9 @@ const CustomModal = ({ children, buttonText, buttonLayer, contentLabel}) => {
   return (
     <div>
       <Content>
-        <Button onClick={openModal} layer={buttonLayer}>{buttonText}</Button>
+        <Button onClick={openModal} layer={buttonLayer} style={buttonStyles}>
+          {buttonText}
+        </Button>
         <Modal
           isOpen={modalIsOpen}
           // onAfterOpen={afterOpenModal}

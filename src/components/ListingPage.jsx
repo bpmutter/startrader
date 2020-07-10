@@ -150,7 +150,10 @@ const ListingPage = ({classes}) => {
                           rerenderParent={triggerRender}
                         />
                       ) : ship.for_sale ? (
-                        <BuyShipModal ship={ship} />
+                        <BuyShipModal
+                          ship={ship}
+                          rerenderParent={triggerRender}
+                        />
                       ) : (
                         <Button animate disabled>
                           Not For Sale

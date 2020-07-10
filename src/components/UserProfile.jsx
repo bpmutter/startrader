@@ -6,6 +6,7 @@ import LoadingBig from './LoadingBig';
 import UserShips from './UserShips';
 // import EditProfile from './EditProfile';
 import EditProfileModal from './EditProfileModal';
+import AddCreditModal from './AddCreditModal';
 
 const styles = (theme) => ({
   profileWrapper: {
@@ -49,8 +50,6 @@ const UserProfile = ({classes, personalProfile}) => {
     const paramId = parseInt(useParams().id);
     const context = useContext(appContext);
     const id = context.id
-    console.log("context", paramId, context)
-    console.log("context ID::", id)
 
     const [user, setUser] = useState({});
     
@@ -101,7 +100,34 @@ const UserProfile = ({classes, personalProfile}) => {
                       <h1>{user.name}</h1>
                       {/* TODO: make button do something..load modal i guess... */}
                       {personalProfile ? (
-                        <EditProfileModal renderProfile={() => triggerRender()} />
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            position: 'relative',
+                            paddingLeft: '1.5rem'
+                          }}
+                        >
+                          <EditProfileModal
+                            renderProfile={() => triggerRender()}
+                            buttonStyles={{
+                              margin: ".25rem",
+                              display: "inline-block",
+                              width: 125,
+                              textAlign: "center",
+                            }}
+                          />
+                          <AddCreditModal
+                            renderProfile={triggerRender}
+                            buttonStyles={{
+                              margin: ".5rem",
+                              display: "inline-block",
+                              width: 125,
+                              textAlign: "center",
+                            }}
+                          />
+                        </div>
                       ) : null}
                     </div>
                     {personalProfile ? <p>{user.credit} credits</p> : ""}
