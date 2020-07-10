@@ -14,7 +14,7 @@ const UserShipsForSale = ({name, id,user}) =>{
         })()
     },[name, ships.length, id])
 
-    return( <ShipResults title={`${name}'s Ships`} ships={ships}/>)
+    return( <ShipResults hideOwner={true} title={`${name}'s Ships`} ships={ships}/>)
 }
 
 export default UserShipsForSale

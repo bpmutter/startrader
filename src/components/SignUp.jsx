@@ -8,6 +8,7 @@ import SelectOption from "./Select";
 import Radio from './Radio';
 import LabelText from './LabelText';
 import Textarea from './Textarea';
+import Puffs from './Puffs'
 
 const SignUp = () => {
   const style = {
@@ -107,91 +108,97 @@ const SignUp = () => {
       {loggedIn ? (
         <Redirect to="/" />
       ) : (
-        <Content style={style.container}>
-          <Frame animate level={3} corners={4} style={style.frame}>
-            <div style={style.contentWrapper}>
-              <Heading node="h2" style={style.title}>
-                Sign Up
-              </Heading>
-              <div
-                style={{ padding: ".75rem .75rem 1.5rem", textAlign: "center" }}
-              >
-                <Words animate layer="alert">
-                  {errors ? errors : " "}
-                </Words>
-              </div>
-              <div>
-                <form onSubmit={submitForm} style={style.loginForm}>
-                  <Input
-                    label="Email: "
-                    type="email"
-                    name="email"
-                    onChange={setFormValues}
-                    required
-                  />
-                  <Input
-                    label="Name: "
-                    type="text"
-                    name="name"
-                    onChange={setFormValues}
-                    required
-                  />
+        <div>
+          <Content style={style.container}>
+            <Frame animate level={3} corners={4} style={style.frame}>
+              <div style={style.contentWrapper}>
+                <Heading node="h2" style={style.title}>
+                  Sign Up
+                </Heading>
+                <div
+                  style={{
+                    padding: ".75rem .75rem 1.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <Words animate layer="alert">
+                    {errors ? errors : " "}
+                  </Words>
+                </div>
+                <div>
+                  <form onSubmit={submitForm} style={style.loginForm}>
+                    <Input
+                      label="Email: "
+                      type="email"
+                      name="email"
+                      onChange={setFormValues}
+                      required
+                    />
+                    <Input
+                      label="Name: "
+                      type="text"
+                      name="name"
+                      onChange={setFormValues}
+                      required
+                    />
 
-                  <Input
-                    label="Password: "
-                    type="password"
-                    name="password"
-                    onChange={setFormValues}
-                    required
-                  />
-                  <Input
-                    label="Confirm password: "
-                    type="password"
-                    name="confirmPassword"
-                    onChange={setFormValues}
-                    required
-                  />
-                  <SelectOption
-                    label="Species: "
-                    name="species"
-                    onChange={setFormValues}
-                    options={speciesOptions}
-                    optionValueId={"id"}
-                    optionInnerContent={"species_type"}
-                    required
-                  />
-                  <p style={{padding: '.5rem 0'}}>
-                    <LabelText label="Faction: " required/>
-                    <Radio
-                      name="faction"
-                      value="rebellion"
-                      checked={faction === "rebellion"}
+                    <Input
+                      label="Password: "
+                      type="password"
+                      name="password"
                       onChange={setFormValues}
-                      label="Rebellion"
+                      required
                     />
-                    <Radio
-                      name="faction"
-                      value="empire"
-                      checked={faction === "empire"}
+                    <Input
+                      label="Confirm password: "
+                      type="password"
+                      name="confirmPassword"
                       onChange={setFormValues}
-                      label="Empire"
+                      required
                     />
-                  </p>
-                  <Textarea
-                    label="Bio: "
-                    type="textarea"
-                    name="bio"
-                    onChange={setFormValues}
-                    required
-                  />
-                  <p style={{ textAlign: "center" }}>
-                    <Button>Sign Up</Button>
-                  </p>
-                </form>
+                    <SelectOption
+                      label="Species: "
+                      name="species"
+                      onChange={setFormValues}
+                      options={speciesOptions}
+                      optionValueId={"id"}
+                      optionInnerContent={"species_type"}
+                      required
+                    />
+                    <p style={{ padding: ".5rem 0" }}>
+                      <LabelText label="Faction: " required />
+                      <Radio
+                        name="faction"
+                        value="rebellion"
+                        checked={faction === "rebellion"}
+                        onChange={setFormValues}
+                        label="Rebellion"
+                      />
+                      <Radio
+                        name="faction"
+                        value="empire"
+                        checked={faction === "empire"}
+                        onChange={setFormValues}
+                        label="Empire"
+                      />
+                    </p>
+                    <Textarea
+                      label="Bio: "
+                      type="textarea"
+                      name="bio"
+                      onChange={setFormValues}
+                      required
+                    />
+                    <p style={{ textAlign: "center" }}>
+                      <Button>Sign Up</Button>
+                    </p>
+                  </form>
+                </div>
               </div>
-            </div>
-          </Frame>
-        </Content>
+            </Frame>
+          </Content>
+          <Puffs/>
+        </div>
       )}
     </div>
   );

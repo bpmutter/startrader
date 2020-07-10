@@ -15,7 +15,7 @@ const myTheme = {
     // },
     primary: {
       base: "#26dafd",
-      baseRGB: [38, 218, 253]
+      baseRGB: [38, 218, 253],
     },
     background: {
       main: "#021114",
@@ -23,7 +23,9 @@ const myTheme = {
   },
   font: {
     fontFamily: {
-      title: 'star_jediregular'
+      title: "star_jediregular",
+      regular:
+        "'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif",
     },
     baseSize: 21,
   },

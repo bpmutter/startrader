@@ -1,6 +1,6 @@
 import React from 'react';
 import {Frame, Image, Content, Words} from 'arwes';
-const ShipCard = ({ship}) => { 
+const ShipCard = ({ship, hideOwner}) => { 
     const style = {
         wrapper: {
             margin: '1rem'
@@ -58,9 +58,9 @@ const ShipCard = ({ship}) => {
                 </h5>
               </span>
             </p>
-            <p>
+            {!hideOwner && <p>
               Listing by <a href={`/users/${ship.user.id}`}>{ship.user.name}</a>
-            </p>
+            </p>}
           </Content>
         </Frame>
       </Content>

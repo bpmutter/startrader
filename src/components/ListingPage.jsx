@@ -4,6 +4,7 @@ import { Content, Image, Frame, Button, withStyles, Link} from "arwes";
 import LoadingBig from './LoadingBig';
 import appContext from './Context';
 import EditListingModal from './EditListingModal';
+import BuyShipModal from './BuyShipModal';
 
 const styles = (theme) => ({
   contentInFrame: {
@@ -92,19 +93,17 @@ const ListingPage = ({classes}) => {
       })()
     },[shipId, ship.id])
 
-    const triggerRender = () => {
-      (async () => {
+    const triggerRender = async () => {
         const res = await fetch(`http://localhost:5000/ships/${shipId}`);
         const { star_ship } = await res.json();
         console.log(star_ship);
         setShip(star_ship);
-      })();
     }
     return (
       <>
         {!ship.id ? (
           <LoadingBig />
-        ) : ( 
+        ) : (
           <Content className={classes.container}>
             <div className={classes.img}>
               <Image
@@ -126,14 +125,12 @@ const ListingPage = ({classes}) => {
                     <p>Class: {ship.starship_type.starship_class}</p>
                     <p>Seller Comment: {ship.seller_comment}</p>
                     {ship.user.id === id ? (
-                      <EditListingModal
-                        listing={ship}
-                        rerenderParent={()=>triggerRender()}
-                      />
+                      <EditListingModal listing={ship} />
                     ) : ship.for_sale ? (
-                      <Button animate layer="success">
-                        Buy Now
-                      </Button>
+                      <BuyShipModal
+                        ship={ship}
+                        rerenderParent={triggerRender}
+                      />
                     ) : (
                       <Button animate disabled>
                         Not For Sale

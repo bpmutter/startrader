@@ -2,8 +2,8 @@ import React, {useState, useContext}  from 'react';
 import {Redirect} from 'react-router-dom';
 import appContext from './Context';
 import Input from './Input';
-import {Words, Button, Content, Heading} from 'arwes';
-import Frame from 'arwes/lib/Frame';
+import {Words, Button, Content, Heading, Frame} from 'arwes';
+import Puffs from './Puffs';
 
 const Login = () => {
 
@@ -51,9 +51,11 @@ const Login = () => {
             setLoggedIn(true);
         }catch(err){
             alert('Oh no, It looks like there was some force interference causing problems with our server...')
-        }
-        
-        
+        }        
+    }
+    const demoLogin = () => {
+      setEmail('lukeskywalker@aol.com');
+      setPassword('force1');
     }
 
     return (
@@ -61,13 +63,19 @@ const Login = () => {
         {loggedIn ? (
           <Redirect to="/" />
         ) : (
-          <Content style={style.container}>
-            <Frame animate level={3} corners={4} style={style.frame}>
-              <div style={style.contentWrapper}>
-                <Heading node="h2" style={style.title}>
-                  Log In
-                </Heading>
-                  <div style={{padding: '.75rem .75rem 1.5rem', textAlign: 'center'}}>
+          <div>
+            <Content style={style.container}>
+              <Frame animate level={3} corners={4} style={style.frame}>
+                <div style={style.contentWrapper}>
+                  <Heading node="h2" style={style.title}>
+                    Log In
+                  </Heading>
+                  <div
+                    style={{
+                      padding: ".75rem .75rem 1.5rem",
+                      textAlign: "center",
+                    }}
+                  >
                     <Words animate layer="alert">
                       {errors ? errors : " "}
                     </Words>
@@ -79,21 +87,31 @@ const Login = () => {
                         type="email"
                         name="email"
                         onChange={setFormValues}
+                        value={email}
                       />
                       <Input
                         label="Password: "
                         type="password"
                         name="password"
                         onChange={setFormValues}
+                        value={password}
                       />
-                      <p style={{textAlign: 'center'}}>
+                      <p
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                        }}
+                      >
                         <Button>Log In</Button>
+                        <Button onClick={demoLogin}>Demo User</Button>
                       </p>
                     </form>
                   </div>
-              </div>
-            </Frame>
-          </Content>
+                </div>
+              </Frame>
+            </Content>
+            <Puffs />
+          </div>
         )}
       </div>
     );

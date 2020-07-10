@@ -42,7 +42,10 @@ const  Foot = () =>{
           </Link>
           <p style={style.footerContent.about}>
             Made with great force focus by{" "}
-            <Link href="#" target="_blank">
+            <Link
+              href="https://bradsimpson213.github.io/bradsimpson/"
+              target="_blank"
+            >
               Brad Simpson
             </Link>{" "}
             and{" "}

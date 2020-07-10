@@ -3,7 +3,7 @@ import { Content, Heading } from "arwes";
 import ShipCard from "./ShipCard";
 import Loading from 'arwes/lib/Loading';
 
-const ShipResults = ({title, ships}) => { 
+const ShipResults = ({title, ships, hideOwner}) => { 
 
     const style = {
       container: {
@@ -23,7 +23,7 @@ const ShipResults = ({title, ships}) => {
         { !ships ?  <Loading/> : 
           <Content style={style.listings}>
           { ships.length ? ships.map((ship) => (
-            <ShipCard ship={ship} />
+            <ShipCard ship={ship} hideOwner={hideOwner}/>
           )) : <p>No ships yet!</p> }
           {}
         </Content>

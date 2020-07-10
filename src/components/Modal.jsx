@@ -21,7 +21,10 @@ const customStyles = {
     width: "auto",
     border: "none",
     padding: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
+    color: myTheme.color.primary.base,
+    fontFamily: myTheme.font.fontFamily.regular,
+    fontSize: myTheme.font.baseSize,
   },
 };
 
@@ -46,7 +49,7 @@ const style = {
   },
 };
 
-const CustomModal = ({ children, buttonText, contentLabel}) => {
+const CustomModal = ({ children, buttonText, buttonLayer, contentLabel}) => {
   
   const [modalIsOpen, setIsOpen] = useState(false);
   let childrenArr = React.Children.toArray(children); 
@@ -73,7 +76,7 @@ const CustomModal = ({ children, buttonText, contentLabel}) => {
   return (
     <div>
       <Content>
-        <Button onClick={openModal}>{buttonText}</Button>
+        <Button onClick={openModal} layer={buttonLayer}>{buttonText}</Button>
         <Modal
           isOpen={modalIsOpen}
           // onAfterOpen={afterOpenModal}

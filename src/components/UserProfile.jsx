@@ -3,7 +3,7 @@ import { useParams, Redirect } from "react-router-dom";
 import { Content, Image, Frame, Button, withStyles, Link } from "arwes";
 import appContext from './Context';
 import LoadingBig from './LoadingBig';
-import UserShipsForSale from './UserShips';
+import UserShips from './UserShips';
 // import EditProfile from './EditProfile';
 import EditProfileModal from './EditProfileModal';
 
@@ -36,6 +36,7 @@ const styles = (theme) => ({
   },
   profileInfo: {
     padding: "1rem",
+    width: '100%',
   },
   profileName: {
     display: "flex",
@@ -115,8 +116,7 @@ const UserProfile = ({classes, personalProfile}) => {
               </Frame>
             </div>
             <section>
-              {/* <ShipResults title="For Sale" ships={user.starships} /> */}
-              <UserShipsForSale name={user.name} id={user.id} user={user} />
+              <UserShips name={user.name} id={user.id} user={user} />
             </section>
             <section>{/* TODO: CREATE AND ADD TRANSACTION TABLE */}</section>
           </Content>

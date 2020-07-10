@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import appContext from "./Context";
 import Input from "./Input";
-import { Words, Button, Content, Heading } from "arwes";
-import Frame from "arwes/lib/Frame";
+import { Words, Button, Heading } from "arwes";
 import SelectOption from "./Select";
 import Radio from "./Radio";
 import LabelText from "./LabelText";
 import Textarea from "./Textarea";
 import {FaTimesCircle} from 'react-icons/fa'
+
 const EditProfile = ({closeModal, renderProfile}) => {
   const style = {
     container: {
