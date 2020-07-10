@@ -6,7 +6,7 @@ const UniqueShips = ({type}) => {
   useEffect(() => {
     (async () => {
       console.log('TYPE::', type)
-      const res = await fetch(`http://localhost:5000/ships/class/${type}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/class/${type}`);
       const data = await res.json();
       setShips(data.star_ships);
       console.log('LATEST SHIPS::', data.star_ships)

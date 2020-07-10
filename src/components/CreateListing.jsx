@@ -37,7 +37,7 @@ const  CreateListing = () => {
   const { user: {id}, token } = useContext(appContext);
   useEffect(() => {
     (async () => {
-      const res = await fetch("http://localhost:5000/ships/types");
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/types`);
       const { ship_types } = await res.json();
       const nonUniques = ship_types.filter(ship => ship.unique === false);
       setShipTypes(nonUniques);
@@ -74,7 +74,7 @@ const  CreateListing = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/ships/create", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

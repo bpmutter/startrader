@@ -19,10 +19,10 @@ const AppWithContext = () => {
       if (id && isToken) {
         (async () => {
           
-          const res = await fetch(`http://localhost:5000/users/${id}`, {
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+              Authorization: token,
             },
           });
           const {user} = await res.json();

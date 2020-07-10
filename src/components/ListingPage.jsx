@@ -85,7 +85,7 @@ const ListingPage = ({classes}) => {
     const [ship, setShip] = useState({});
     useEffect(()=>{
       (async ()=>{
-        const res = await fetch(`http://localhost:5000/ships/${shipId}`)
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/${shipId}`)
         const {star_ship} = await res.json();
         console.log(star_ship);
         setShip(star_ship);
@@ -93,7 +93,7 @@ const ListingPage = ({classes}) => {
     },[shipId, ship.id])
 
     const triggerRender = async () => {
-        const res = await fetch(`http://localhost:5000/ships/${shipId}`);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/${shipId}`);
         const { star_ship } = await res.json();
         console.log(star_ship);
         setShip(star_ship);

@@ -41,7 +41,7 @@ const SignUp = () => {
 
   useEffect(()=>{
       ( async () => {
-        const res = await fetch("http://localhost:5000/users/species");
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/species`);
         const {species} = await res.json();
         setSpeciesOptions(species);
       })();
@@ -74,7 +74,7 @@ const SignUp = () => {
     }
     
     try {
-      const res = await fetch("http://localhost:5000/users/create", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

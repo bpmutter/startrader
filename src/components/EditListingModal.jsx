@@ -75,7 +75,7 @@ const EditListingModal = ({ listing, rerenderParent }) => {
   } = useContext(appContext);
   useEffect(() => {
     (async () => {
-      const res = await fetch("http://localhost:5000/ships/types");
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/types`);
       const { ship_types } = await res.json();
       const nonUniques = ship_types.filter((ship) => ship.unique === false);
       setShipTypes(nonUniques);
@@ -111,7 +111,7 @@ const EditListingModal = ({ listing, rerenderParent }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/ships/update/${listing.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/ships/update/${listing.id}`,
         {
           method: "PUT",
           headers: {

@@ -40,7 +40,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://localhost:5000/users/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`);
       const {user} = await res.json();
       setName(user.name);
       setEmail(user.email);
@@ -49,7 +49,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
       setFaction( user.faction ? "rebellion" : "empire");
       setUserImage(user.user_image);
 
-      const res2 = await fetch("http://localhost:5000/users/species");
+      const res2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/species`);
       const { species } = await res2.json();
       setSpeciesOptions(species);
     })();
@@ -77,7 +77,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
       bio,
       faction
     );
-    const res = await fetch(`http://localhost:5000/users/update/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
 
   };
   const deleteAccount = async () => {
-      const res = await fetch(`http://localhost:5000/users/delete/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

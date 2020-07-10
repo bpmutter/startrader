@@ -5,7 +5,7 @@ const UniqueShips = () => {
   const [ships, setShips] = useState(null);
   useEffect(() => {
     (async () => {
-      const res = await fetch("http://localhost:5000/ships/uniques");
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/uniques`);
       const data = await res.json();
       setShips(data.star_ships);
     })();

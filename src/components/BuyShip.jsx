@@ -22,7 +22,7 @@ const BuyShip = ({ ship, rerenderParent, closeModal }) => {
   const shipName = ship.custom_name || ship.starship_type.type_name;
 
   const buyShip = async () => {
-    const res = await fetch(`http://localhost:5000/transactions`, {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/transactions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

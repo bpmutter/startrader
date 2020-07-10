@@ -59,7 +59,7 @@ const UserProfile = ({classes, personalProfile}) => {
 
     useEffect(()=>{
       ( async ()=>{
-        const res = await fetch(`http://localhost:5000/users/${personalProfile ? id : paramId}`);
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${personalProfile ? id : paramId}`);
         const {user} = await res.json();
         console.log('USER::',user)
         setUser(user);
@@ -68,7 +68,7 @@ const UserProfile = ({classes, personalProfile}) => {
     const triggerRender = () => {
       (async () => {
         const res = await fetch(
-          `http://localhost:5000/users/${personalProfile ? id : paramId}`
+          `${process.env.REACT_APP_BACKEND_URL}/users/${personalProfile ? id : paramId}`
         );
         const { user } = await res.json();
         console.log("USER::", user);
