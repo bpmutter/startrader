@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/startrader/static/css/main.00edf7d3.chunk.css",
+    "main.js": "/startrader/static/js/main.204d43b9.chunk.js",
+    "main.js.map": "/startrader/static/js/main.204d43b9.chunk.js.map",
+    "runtime-main.js": "/startrader/static/js/runtime-main.b7a999e1.js",
+    "runtime-main.js.map": "/startrader/static/js/runtime-main.b7a999e1.js.map",
+    "static/js/2.6bba0a3e.chunk.js": "/startrader/static/js/2.6bba0a3e.chunk.js",
+    "static/js/2.6bba0a3e.chunk.js.map": "/startrader/static/js/2.6bba0a3e.chunk.js.map",
+    "index.html": "/startrader/index.html",
+    "precache-manifest.757be3aba78f4fad84ab4317273c20dc.js": "/startrader/precache-manifest.757be3aba78f4fad84ab4317273c20dc.js",
+    "service-worker.js": "/startrader/service-worker.js",
+    "static/css/main.00edf7d3.chunk.css.map": "/startrader/static/css/main.00edf7d3.chunk.css.map",
+    "static/js/2.6bba0a3e.chunk.js.LICENSE.txt": "/startrader/static/js/2.6bba0a3e.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/startrader/static/media/starjedi-webfont.cceb0e28.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b7a999e1.js",
+    "static/js/2.6bba0a3e.chunk.js",
+    "static/css/main.00edf7d3.chunk.css",
+    "static/js/main.204d43b9.chunk.js"
+  ]
+}
