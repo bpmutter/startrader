@@ -68,15 +68,10 @@ const EditProfile = ({closeModal, renderProfile}) => {
   const submitForm = async (e) => {
     e.preventDefault();
     if((password || confirmPassword) && (password !== confirmPassword)){
-      setErrors("Please make sure that you have entered the new password correctly.")
+      setErrors("Please make sure that you have entered the new password correctly.");
+      return;
     }
-    console.table(
-      email,
-      name,
-      species,
-      bio,
-      faction
-    );
+    const img = `https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/species/${species}.jpg`;
     const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update/${id}`, {
       method: "PUT",
       headers: {
@@ -84,7 +79,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
         Authorization: token,
       },
       body: JSON.stringify({ 
-        email, name, species, bio, faction: faction === "rebellion", user_image: userImage
+        email, name, species, bio, faction: faction === "rebellion", user_image: img
       })
     });
     const data = res.json();

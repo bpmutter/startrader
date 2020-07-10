@@ -12,15 +12,15 @@ const customStyles = {
     backgroundColor: `rgba(${r},${g},${b},.15)`,
   },
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "auto",
+    top: 25,
+    // left: "50%",
+    // right: "auto",
+    bottom: 25,
+    // marginRight: "-50%",
+    margin: '0 auto',
+    // transform: "translate(-50%, -50%)",
+    maxWidth: 600,
     border: "none",
-    padding: 0,
     backgroundColor: "transparent",
     color: myTheme.color.primary.base,
     fontFamily: myTheme.font.fontFamily.regular,
@@ -45,7 +45,7 @@ const style = {
   },
   frame: {
     backgroundColor: myTheme.color.background.main,
-    margin: "2rem",
+    margin: "1rem",
   },
 };
 
@@ -97,7 +97,7 @@ const CustomModal = ({
           style={customStyles}
           contentLabel={contentLabel || ""}
         >
-          <Content style={style.container}>
+          <Content style={style.container} className="modal-content">
             <Frame animate level={3} corners={4} style={style.frame}>
               {childrenArr}
             </Frame>

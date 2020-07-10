@@ -74,20 +74,22 @@ const SignUp = () => {
     }
     
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          name,
-          species,
-          bio,
-          faction: (faction === 'rebellion'),
-          user_image:
-            "https://upload.wikimedia.org/wikipedia/en/4/4b/Jjportrait.jpg",
-        }),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/users/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+            name,
+            species,
+            bio,
+            faction: faction === "rebellion",
+            user_image: `https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/species/${species}.jpg`,
+          }),
+        }
+      );
       const data = await res.json();
 
       if (data.error) {
