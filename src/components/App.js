@@ -13,6 +13,7 @@ import SignUp from './SignUp';
 import CreateListing from './CreateListing';
 import EditProfile from './EditProfile';
 import EditListingModal from './EditListingModal';
+import FourOhFour from './FourOhFour';
 
 function App() {
   
@@ -57,8 +58,7 @@ function App() {
                   <EditListingModal/>
                 </Route>
                 <Route path="*">
-                  {/* TODO: ADD 404 page */}
-                  <div>404: resource not found :(</div>
+                  <FourOhFour/>
                 </Route>
               </Switch>
             </div>

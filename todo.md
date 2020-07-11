@@ -1,33 +1,33 @@
 # StarTrader Frontend Todo
 
 ## Templates
-* [ ] homepage
+* [x] homepage
   * [x] latest ships
   * [x]  ships by class
 * [x] ship card 
-* [ ] ship page
+* [x] ship page
   * [x] image 
   * [x] ship primary info
   * [x] ship secondary info
   * [x] seller info card 
-  * [ ] edit ship button for own ships 
-  * [ ] figure out what's happening with link to look at seller of ships
+  * [x] edit ship button for own ships 
+  * [x] figure out what's happening with link to look at seller of ships
 * [x] user profile page 
   * [x] profile card at top 
   * [x] for sale ships 
   * [x] all history
   * [ ] when go to `user/own-id` redirect to `/profile`
-* [ ] navigation
-  * [ ] mobile optimize
+* [x] navigation
+  * [x] mobile optimize
   * [x] user profile dropdown 
     * [x] logout button 
     * [x] link to user profile page
 * [x] footer
   * [x] lock to bottom of the page 
 * [ ] 404 page 
-* [ ] Add ship page 
+* [x] Add ship page 
   * [x] form where user adds specific things 
-    * [ ] infobox that presents all the information about the ship type 
+    * [x] infobox that presents all the information about the ship type 
 * [x] login page 
   * [x] form for login 
   * [x] logic for DB call and login working 
