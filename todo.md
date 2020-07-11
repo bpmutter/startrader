@@ -1,6 +1,9 @@
 # StarTrader Frontend Todo
 
 ## Templates
+* [ ] transactions table 
+  * [ ] create table
+  * [ ] fetch data from DB and populate the table
 * [x] homepage
   * [x] latest ships
   * [x]  ships by class
@@ -16,7 +19,7 @@
   * [x] profile card at top 
   * [x] for sale ships 
   * [x] all history
-  * [ ] when go to `user/own-id` redirect to `/profile`
+  * [x] when go to `user/own-id` redirect to `/profile`
 * [x] navigation
   * [x] mobile optimize
   * [x] user profile dropdown 
@@ -34,28 +37,30 @@
 * [x] sign up page
   * [x] form for login 
 * [ ] modify listing page
-  * [ ] note: just take same form from add listing and autofill the data from GET 1 
+  * [x] note: just take same form from add listing and autofill the data from GET 1 
   * [ ] UPDATE BUTTON:  then have a PUT 1 route 
-  * [ ] REMOVE BUTTON: have a DELETE 1 route  
+  * [x] REMOVE BUTTON: have a DELETE 1 route  
 * [ ] modify profile page
   * [x] same as create profile, just autofill data
-  * [ ] make fetch w DB work 
+  * [x] make fetch w DB work 
 * [x] Loading component 
   * [x] improve on what there is now 
   * [x] make modular component 
 * [x] ShipResults 
   * [x] add loading component 
-* [ ] user image select 
-  * [ ] user selects 1 of 5 empire/rebellion images 
+* [x] user image  
+  * [x] selects user image based on species
 
+## stretch goals 
+* [ ] add force points 
+* [ ] add light side and dark side themes
 
 ## modular utility components 
   * [x] make select/option (NOTE: i think i can steal whatever is on the arwes play site)
   * [x] make radio buttons into a component
-  * [ ] modal 
+  * [x] modal 
 
 
 ## Make more responsive 
-* [ ] quick search buttons 
-* [ ] Nav bar 
-  * [ ] NOTE: i think the easiest thing to do here would be to have all of the secondary stuff (marketplace, etc. go to a hamburger)
+* [x] quick search buttons 
+* [x] Nav bar 

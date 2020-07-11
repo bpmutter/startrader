@@ -37,11 +37,33 @@ const styles = (theme) => ({
   },
   profileInfo: {
     padding: "1rem",
-    width: '100%',
+    width: "100%",
   },
   profileName: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
+    [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
+      flexDirection: "column",
+    },
+  },
+  profileButtonWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingLeft: "1.5rem",
+    [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
+      flexDirection: "row",
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      marginBottom: '1rem',
+    },
+  },
+  profileButton: {
+    margin: ".5rem",
+    display: "inline-block",
+    width: 125,
+    textAlign: "center",
   },
 });
 
@@ -96,16 +118,9 @@ const UserProfile = ({classes, personalProfile}) => {
                   <div className={classes.profileInfo}>
                     <div className={classes.profileName}>
                       <h1>{user.name}</h1>
-                      {/* TODO: make button do something..load modal i guess... */}
                       {personalProfile ? (
                         <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            position: 'relative',
-                            paddingLeft: '1.5rem'
-                          }}
+                          className={classes.profileButtonWrapper}
                         >
                           <EditProfileModal
                             renderProfile={() => triggerRender()}
@@ -125,6 +140,9 @@ const UserProfile = ({classes, personalProfile}) => {
                               textAlign: "center",
                             }}
                           />
+                          <Link href="/sell-ship">
+                            <Button className={classes.profileButton}>Sell Ship</Button>
+                          </Link>
                         </div>
                       ) : null}
                     </div>

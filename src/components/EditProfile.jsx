@@ -45,7 +45,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
   const [errors, setErrors] = useState(null);
   const [loggedIn, setLoggedIn] = useState(true);
 
-  const { id, logout, token } = useContext(appContext);
+  const { id, logout, token, login } = useContext(appContext);
 
   useEffect(() => {
     (async () => {
@@ -91,11 +91,14 @@ const EditProfile = ({closeModal, renderProfile}) => {
         email, name, species, bio, faction: faction === "rebellion", user_image: img
       })
     });
-    const data = res.json();
+    const data = await res.json();
+    console.log('UPDATE DATA::', data)
     if(data.error){
       setErrors(data.error);
     } else{
+      const {access_token, user} = data;
       closeModal();
+      login(access_token, user)
       renderProfile();
     }
 
