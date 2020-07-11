@@ -24,7 +24,7 @@
     * [x] link to user profile page
 * [x] footer
   * [x] lock to bottom of the page 
-* [ ] 404 page 
+* [x] 404 page 
 * [x] Add ship page 
   * [x] form where user adds specific things 
     * [x] infobox that presents all the information about the ship type 
@@ -36,7 +36,7 @@
 * [ ] modify listing page
   * [ ] note: just take same form from add listing and autofill the data from GET 1 
   * [ ] UPDATE BUTTON:  then have a PUT 1 route 
-  * [ ] REMOVE BUTTON: jave a DELETE 1 route  
+  * [ ] REMOVE BUTTON: have a DELETE 1 route  
 * [ ] modify profile page
   * [x] same as create profile, just autofill data
   * [ ] make fetch w DB work 

@@ -14,6 +14,7 @@ import CreateListing from './CreateListing';
 import EditProfile from './EditProfile';
 import EditListingModal from './EditListingModal';
 import FourOhFour from './FourOhFour';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   
@@ -31,18 +32,13 @@ function App() {
                 <Route path="/listings/:id">
                   <ListingPage />
                 </Route>
-                <Route path="/profile/edit">
-                  <EditProfile />
-                </Route>
-                <Route exact path="/profile">
+                <ProtectedRoute exact path="/profile">
                   <UserProfile personalProfile={true} />
-                </Route>
-
+                </ProtectedRoute>
                 <Route path="/users/:id">
                   <UserProfile />
                 </Route>
                 <Route path="/logout">
-                  {/* TODO: add logout functionality */}
                   <Redirect to="/" />
                 </Route>
                 <Route path="/login">
@@ -51,12 +47,9 @@ function App() {
                 <Route path="/signup">
                   <SignUp />
                 </Route>
-                <Route path="/sell-ship">
+                <ProtectedRoute path="/sell-ship">
                   <CreateListing />
-                </Route>
-                <Route path="/testing">
-                  <EditListingModal/>
-                </Route>
+                </ProtectedRoute>
                 <Route path="*">
                   <FourOhFour/>
                 </Route>

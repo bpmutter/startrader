@@ -254,7 +254,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
             </div>
           </form>
         </div>
-        {/* <div style={style.formWrapper}>
+        <div style={style.formWrapper}>
           <form onSubmit={deleteAccount} style={style.loginForm}>
             <Heading node="h3">
               <Words layer="alert">Delete Account</Words>
@@ -268,7 +268,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
               <Button layer="alert" onClick={deleteAccount}>Delete Account</Button>
             </div>
           </form>
-        </div> */}
+        </div>
       </div>
     </>
   );
