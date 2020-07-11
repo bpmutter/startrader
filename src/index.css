@@ -3,12 +3,15 @@
 *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  background-color: #021114
+  background-color: #021114;
 }
 
 *::-webkit-scrollbar-thumb {
   border: 1px solid #26dafd;
   cursor: pointer;
+}
+*::-webkit-scrollbar-corner {
+  background-color: #021114;
 }
 
 body {
