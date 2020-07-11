@@ -32,17 +32,19 @@ const EditProfile = ({closeModal, renderProfile}) => {
   };
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [species, setSpecies] = useState(1);
   const [bio, setBio] = useState("");
   const [faction, setFaction] = useState("rebellion");
   const [speciesOptions, setSpeciesOptions] = useState([]);
   const [userImage, setUserImage] = useState("")
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState(null);
   const [loggedIn, setLoggedIn] = useState(true);
+
   const { id, logout, token } = useContext(appContext);
 
   useEffect(() => {
@@ -71,13 +73,13 @@ const EditProfile = ({closeModal, renderProfile}) => {
       if (e.target.value === "rebellion") setFaction("rebellion");
       else setFaction("empire");
     }
+    else if(e.target.name === "oldPassword") setOldPassword(e.target.value);
+    else if(e.target.name === "newPassword") setNewPassword(e.target.value);
+    else if(e.target.name === "confirmPassword") setConfirmPassword(e.target.value);
   };
   const submitForm = async (e) => {
     e.preventDefault();
-    if((password || confirmPassword) && (password !== confirmPassword)){
-      setErrors("Please make sure that you have entered the new password correctly.");
-      return;
-    }
+
     const img = `https://starwars-trader-imgs.s3.us-east-2.amazonaws.com/img/species/${species}.jpg`;
     const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/update/${id}`, {
       method: "PUT",
@@ -98,9 +100,36 @@ const EditProfile = ({closeModal, renderProfile}) => {
     }
 
   };
-  const changePassword = async () => {
-    //do stuff
+  const changePassword = async (e) => {
+    e.preventDefault();
+    if ((newPassword || confirmPassword) && newPassword !== confirmPassword) {
+      setErrors(
+        "Please make sure that you have entered the new password correctly."
+      );
+    }
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/password/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          "old_password": oldPassword,
+          "new_password": newPassword,
+        }),
+      }
+    );
+    const data = await res.json();
+    if (data.error || !res.ok) {
+      setErrors('There was a problem updating your password. Please make sure your old password is correct and try again.');
+    } else {
+      closeModal();
+      renderProfile();
+    }
   }
+
   const deleteAccount = async () => {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/delete/${id}`, {
         method: "DELETE",
@@ -209,7 +238,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
             <Input
               label="New Password: "
               type="password"
-              name="confirmPassword"
+              name="newPassword"
               onChange={setFormValues}
               required
             />
@@ -221,11 +250,11 @@ const EditProfile = ({closeModal, renderProfile}) => {
               required
             />
             <div style={style.buttonWrapper}>
-              <Button>Change Password</Button>
+              <Button onClick={changePassword}>Change Password</Button>
             </div>
           </form>
         </div>
-        <div style={style.formWrapper}>
+        {/* <div style={style.formWrapper}>
           <form onSubmit={deleteAccount} style={style.loginForm}>
             <Heading node="h3">
               <Words layer="alert">Delete Account</Words>
@@ -236,10 +265,10 @@ const EditProfile = ({closeModal, renderProfile}) => {
               lost to the galaxy forever.
             </p>
             <div style={style.buttonWrapper}>
-              <Button layer="alert">Delete Account</Button>
+              <Button layer="alert" onClick={deleteAccount}>Delete Account</Button>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     </>
   );

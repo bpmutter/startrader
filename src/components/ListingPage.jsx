@@ -87,7 +87,6 @@ const ListingPage = ({classes}) => {
       (async ()=>{
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/${shipId}`)
         const {star_ship} = await res.json();
-        console.log(star_ship);
         setShip(star_ship);
       })()
     },[shipId, ship.id])
@@ -95,7 +94,6 @@ const ListingPage = ({classes}) => {
     const triggerRender = async () => {
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/${shipId}`);
         const { star_ship } = await res.json();
-        console.log(star_ship);
         setShip(star_ship);
     }
     return (

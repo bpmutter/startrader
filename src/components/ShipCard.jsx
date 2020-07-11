@@ -30,7 +30,6 @@ const ShipCard = ({ship, hideOwner}) => {
             },
         },
     };
-    console.log(ship)
     return (
       <Content style={style.wrapper}>
         <Frame animate hover={true} style={style.img}>

@@ -96,7 +96,6 @@ const  CreateListing = () => {
         setErrors(data.error);
         return;
       } else { 
-        console.log(data)
         setSuccessfulPost(data.starship);
       }
     } catch (err) {

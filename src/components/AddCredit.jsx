@@ -36,10 +36,7 @@ const EditProfile = ({ closeModal, renderProfile }) => {
         `${process.env.REACT_APP_BACKEND_URL}/users/${id}`
       );
       const { user } = await res.json();
-      setUserCredits(user.credit);
-      console.log('USER CREDITS:: ',user.credit)
-      
-      
+      setUserCredits(user.credit); 
     })();
   }, [id]);
 

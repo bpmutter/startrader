@@ -60,7 +60,6 @@ const UserProfile = ({classes, personalProfile}) => {
       ( async ()=>{
         const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${personalProfile ? id : paramId}`);
         const {user} = await res.json();
-        console.log('USER::',user)
         setUser(user);
       })();
     },[paramId, personalProfile, id, user.id]);
@@ -70,7 +69,6 @@ const UserProfile = ({classes, personalProfile}) => {
           `${process.env.REACT_APP_BACKEND_URL}/users/${personalProfile ? id : paramId}`
         );
         const { user } = await res.json();
-        console.log("USER::", user);
         setUser(user);
       })();
     };

@@ -54,7 +54,6 @@ const style = {
 };
 
 const EditListingModal = ({ listing, rerenderParent }) => {
-  console.log("LISTING:: ", listing);
   const [successfulPost, setSuccessfulPost] = useState();
   const [shipTypes, setShipTypes] = useState([]);
   const [ship_type, setSelectedShipType] = useState(listing.ship_type);

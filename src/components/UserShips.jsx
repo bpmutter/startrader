@@ -8,7 +8,6 @@ const UserShipsForSale = ({name, id,user}) =>{
             const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/user/${id}`);
             const data = await res.json();
             setShips(data.star_ships);
-            console.log("SHIPS::", ships)
             ships.forEach(ship => ship.user = user)
             
         })()
