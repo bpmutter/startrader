@@ -22,7 +22,7 @@ The application is made with a React frontend and the Arwes sci-fi UI library. T
 * Post new starships for sale (only basic not unique)
 * Search for starships by starship class  in the interface bar
 
-![StarTrader mini-demo](/readme-assets/star-trader-demo.gif)
+![StarTrader mini-demo](/readme-assets/star-trader-demo-full.gif)
 
 ## Technologies Used
 * Frontend
