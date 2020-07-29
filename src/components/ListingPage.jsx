@@ -168,7 +168,7 @@ const ListingPage = ({classes}) => {
                       <Image resources={ship.user.user_image}></Image>
                     </Content>
                     <Content className={classes.sellerInfo}>
-                      <h2>Seller Info</h2>
+                      <h2><span>{ship.for_sale ? "Seller" : "Owner"}</span> Info</h2>
                       <p>{ship.user.name}</p>
                       <Link href={`/users/${ship.user.id}`}>
                         <Button>Go to Profile</Button>
