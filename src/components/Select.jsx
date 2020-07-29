@@ -21,7 +21,7 @@ const styles = (theme) => ({
     cursor: "pointer",
 
     backgroundColor: myTheme.color.background.main,
-    color: myTheme.color.primary.base,
+    color: theme.color.primary.base,
     fontSize: myTheme.font.baseSize,
     lineHeight: "30px",
   },

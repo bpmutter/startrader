@@ -15,11 +15,13 @@ import EditProfile from './EditProfile';
 import EditListingModal from './EditListingModal';
 import FourOhFour from './FourOhFour';
 import ProtectedRoute from './ProtectedRoute';
+import darkSideTheme from '../theme/darkTheme';
 
 function App() {
-  
+  const theme = createTheme(darkSideTheme);
+  console.log('darkside theme is::', theme)
   return (
-    <ThemeProvider theme={createTheme()}>
+    <ThemeProvider theme={createTheme(theme)}>
       <>
         <Arwes>
           <Router>
@@ -51,7 +53,7 @@ function App() {
                   <CreateListing />
                 </ProtectedRoute>
                 <Route path="*">
-                  <FourOhFour/>
+                  <FourOhFour />
                 </Route>
               </Switch>
             </div>

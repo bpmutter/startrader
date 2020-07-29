@@ -3,6 +3,7 @@ import { Header, Heading, Link, Frame, withStyles } from "arwes";
 import { FaUserAstronaut } from 'react-icons/fa'
 import appContext from './Context';
 import Button from 'arwes/lib/Button';
+import darkSideTheme from '../theme/darkTheme';
 
 const styles = (theme) => ({
   navBar: {
@@ -100,10 +101,15 @@ const TopHeader = ({classes}) => {
                 StarTrader
               </Heading>
             </Link>
-            <Link href="/" className={classes.secondary}>
+            <Link href="/" 
+              className={classes.secondary}
+              theme={darkSideTheme}
+              >
               Marketplace
             </Link>
-            <Link href="/sell-ship" className={classes.secondary}>
+            <Link href="/sell-ship" 
+              className={classes.secondary}
+            >
               Sell Ship
             </Link>
           </div>
@@ -113,8 +119,10 @@ const TopHeader = ({classes}) => {
               <Link href="/login">
                 <Button className={classes.button}>Login</Button>
               </Link>
-              <Link href="/signup">
-                <Button className={classes.button}>Sign Up</Button>
+              <Link href="/signup" layer="primary">
+                <Button
+                  layer="primary"
+                  className={classes.button}>Sign Up</Button>
               </Link>
               <div>
                 <div className={classes.mobileLoginSignup}>
