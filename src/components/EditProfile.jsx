@@ -220,11 +220,9 @@ const EditProfile = ({closeModal, renderProfile}) => {
               required
               value={bio}
             />
-           
+
             <div style={style.buttonWrapper}>
-              <Button onClick={submitForm}>
-                Update Profile
-              </Button>
+              <Button onClick={submitForm}>Update Profile</Button>
             </div>
           </form>
         </div>
@@ -263,12 +261,16 @@ const EditProfile = ({closeModal, renderProfile}) => {
               <Words layer="alert">Delete Account</Words>
             </Heading>
             <Line animate />
-            <p>
-              <em>Warning:</em> once you click this button, your account will be
-              lost to the galaxy forever.
-            </p>
+            <Words layer="primary">
+              <p>
+                <em>Warning:</em> once you click this button, your account will
+                be lost to the galaxy forever.
+              </p>
+            </Words>
             <div style={style.buttonWrapper}>
-              <Button layer="alert" onClick={deleteAccount}>Delete Account</Button>
+              <Button layer="alert" onClick={deleteAccount}>
+                Delete Account
+              </Button>
             </div>
           </form>
         </div>

@@ -1,4 +1,6 @@
-const darkSideTheme = {
+const themes = {
+
+darkSideTheme: {
   color: {
     primary: {
       base: "#be26fc",
@@ -16,5 +18,6 @@ const darkSideTheme = {
       light: "#f458f2",
     },
   },
+}
 };
-export default darkSideTheme;
+export default themes;

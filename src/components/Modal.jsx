@@ -1,55 +1,44 @@
 import React, { useState, cloneElement } from "react";
 import Modal from "react-modal";
-import { Content, Button, Frame } from "arwes";
+import { Content, Button, Frame, withStyles } from "arwes";
 import myTheme from "../theme/theme";
 
 
 Modal.setAppElement("#root");
 
 const [r, b, g] = myTheme.color.primary.baseRGB;
-const customStyles = {
+const modalStyles = {
   overlay: {
     backgroundColor: `rgba(${r},${g},${b},.15)`,
   },
   content: {
     top: 25,
-    // left: "50%",
-    // right: "auto",
     bottom: 25,
-    // marginRight: "-50%",
-    margin: '0 auto',
-    // transform: "translate(-50%, -50%)",
+    margin: "0 auto",
     maxWidth: 600,
     border: "none",
     backgroundColor: "transparent",
-    color: myTheme.color.primary.base,
-    fontFamily: myTheme.font.fontFamily.regular,
-    fontSize: myTheme.font.baseSize,
   },
 };
 
-const style = {
+const styles = (theme) => ({
   container: {
-    // padding: "2rem",
     maxWidth: 600,
     margin: "0 auto",
     backgroundColor: "none",
     overflow: "none",
-  },
-  title: {
-    textAlign: "center",
-    margin: "1rem",
-  },
-  contentWrapper: {
-    margin: "2rem",
+    color: theme.color.primary.base,
+    fontFamily: myTheme.font.fontFamily.regular,
+    fontSize: myTheme.font.baseSize,
   },
   frame: {
     backgroundColor: myTheme.color.background.main,
     margin: "1rem",
   },
-};
+});
 
-const CustomModal = ({
+const CustomModal = withStyles(styles)(({
+  classes,
   children,
   buttonText,
   buttonLayer,
@@ -94,11 +83,11 @@ const CustomModal = ({
           isOpen={modalIsOpen}
           // onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          style={customStyles}
+          style={modalStyles}
           contentLabel={contentLabel || ""}
         >
-          <Content style={style.container} className="modal-content">
-            <Frame animate level={3} corners={4} style={style.frame}>
+          <Content className={classes.container} className="modal-content">
+            <Frame animate level={3} corners={4} className={classes.frame}>
               {childrenArr}
             </Frame>
           </Content>
@@ -106,6 +95,6 @@ const CustomModal = ({
       </Content>
     </div>
   );
-};
+});
 
 export default CustomModal;

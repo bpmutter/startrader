@@ -1,13 +1,15 @@
 import React from 'react';
 import {withStyles} from 'arwes';
 import Words from 'arwes/lib/Words';
-
+import myTheme from '../theme/theme'
 const styles = theme => ({
   labelText: {
     width: 160,
     display: "inline-block",
     paddingRight: "1rem",
     textAlign: "right",
+    fontFamily: myTheme.font.fontFamily.regular,
+    fontSize: myTheme.font.baseSize,
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
       display: 'block',
       textAlign: 'left',

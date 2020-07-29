@@ -7,7 +7,8 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  border: 1px solid #26dafd;
+  border: 5px solid #222222;
+  /* background-color: #444444; */
   cursor: pointer;
 }
 *::-webkit-scrollbar-corner {

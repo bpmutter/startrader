@@ -15,11 +15,11 @@ import EditProfile from './EditProfile';
 import EditListingModal from './EditListingModal';
 import FourOhFour from './FourOhFour';
 import ProtectedRoute from './ProtectedRoute';
-import darkSideTheme from '../theme/darkTheme';
+import altThemes from '../theme/altThemes';
 
 function App() {
-  const theme = createTheme(darkSideTheme);
-  console.log('darkside theme is::', theme)
+  const theme = createTheme(altThemes.darkSideTheme);
+  
   return (
     <ThemeProvider theme={createTheme(theme)}>
       <>

@@ -3,7 +3,6 @@ import { Header, Heading, Link, Frame, withStyles } from "arwes";
 import { FaUserAstronaut } from 'react-icons/fa'
 import appContext from './Context';
 import Button from 'arwes/lib/Button';
-import darkSideTheme from '../theme/darkTheme';
 
 const styles = (theme) => ({
   navBar: {
@@ -103,7 +102,6 @@ const TopHeader = ({classes}) => {
             </Link>
             <Link href="/" 
               className={classes.secondary}
-              theme={darkSideTheme}
               >
               Marketplace
             </Link>
