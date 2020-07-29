@@ -54,9 +54,6 @@ const style = {
 };
 
 const EditListingModal = ({ listing, rerenderParent }) => {
-  const [successfulPost, setSuccessfulPost] = useState();
-  const [shipTypes, setShipTypes] = useState([]);
-  const [ship_type, setSelectedShipType] = useState(listing.ship_type);
   const [custom_name, setCustomName] = useState(listing.custom_name);
   const [sale_price, setSalePrice] = useState(listing.sale_price);
   const [lightyears_traveled, setLightyearsTraveled] = useState(
@@ -72,20 +69,9 @@ const EditListingModal = ({ listing, rerenderParent }) => {
     user: { id },
     token,
   } = useContext(appContext);
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/ships/types`);
-      const { ship_types } = await res.json();
-      const nonUniques = ship_types.filter((ship) => ship.unique === false);
-      setShipTypes(nonUniques);
-    })();
-  }, []);
 
   const setFormValues = (e) => {
     switch (e.target.name) {
-      case "ship_type":
-        setSelectedShipType(e.target.value);
-        break;
       case "custom_name":
         setCustomName(e.target.value);
         break;
@@ -118,7 +104,6 @@ const EditListingModal = ({ listing, rerenderParent }) => {
             Authorization: token,
           },
           body: JSON.stringify({
-            ship_type,
             custom_name,
             sale_price: parseInt(sale_price),
             lightyears_traveled: parseInt(lightyears_traveled),
@@ -144,7 +129,6 @@ const EditListingModal = ({ listing, rerenderParent }) => {
       );
     }
   };
-  // let subtitle;
   function openModal() {
     setIsOpen(true);
   }
@@ -188,16 +172,6 @@ const EditListingModal = ({ listing, rerenderParent }) => {
                 </div>
                 <div>
                   <form onSubmit={submitForm} style={style.loginForm}>
-                    <SelectOption
-                      label="Ship Type: "
-                      name="ship_type"
-                      onChange={setFormValues}
-                      options={shipTypes}
-                      optionValueId={"id"}
-                      optionInnerContent={"type_name"}
-                      required
-                      selected={ship_type}
-                    />
                     <Input
                       label="Custom Name: "
                       type="text"
