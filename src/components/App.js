@@ -18,10 +18,10 @@ import ProtectedRoute from './ProtectedRoute';
 import altThemes from '../theme/altThemes';
 
 function App() {
-  const theme = createTheme(altThemes.darkSideTheme);
+  const theme = createTheme(altThemes.rey);
   
   return (
-    <ThemeProvider theme={createTheme(theme)}>
+    <ThemeProvider theme={theme}>
       <>
         <Arwes>
           <Router>

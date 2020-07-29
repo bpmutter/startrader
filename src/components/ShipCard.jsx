@@ -27,6 +27,7 @@ const ShipCard = ({ship, hideOwner}) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
+                alignItems: 'center'
             },
         },
     };
@@ -48,13 +49,13 @@ const ShipCard = ({ship, hideOwner}) => {
               </a>
             </h3>
             <p style={style.content.additionalInfo}>
-              <h6>{ship.sale_price} credits</h6>
+              <span>{ship.sale_price} credits</span>
               <span>
-                <h5>
+                
                   <Words layer="success">
                     {ship.for_sale ? "For Sale" : ""}
                   </Words>
-                </h5>
+                
               </span>
             </p>
             {!hideOwner && <p>
