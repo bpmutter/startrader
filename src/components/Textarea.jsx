@@ -8,13 +8,6 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "flex-start",
   },
-  labelText: {
-    width: 150,
-    display: "inline-block",
-    paddingRight: "1rem",
-    textAlign: "right",
-    alignSelf: "flex-end",
-  },
   inputFrame: {
     padding: "5px 3px",
     display: "inline-block",
