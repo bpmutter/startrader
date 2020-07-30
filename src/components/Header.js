@@ -46,6 +46,11 @@ const styles = (theme) => ({
     position: "relative",
     top: 5,
   },
+  loggedInWrapper: {
+    display: 'inline-flex',
+    alignItems: 'center'
+
+  },
   dropdown: {
     position: "absolute",
     zIndex: 5,
@@ -73,6 +78,7 @@ const styles = (theme) => ({
     },
   },
   theme: {
+    marginRight: '2em',
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
       display: "none",
     },
@@ -122,13 +128,13 @@ const TopHeader = ({classes}) => {
 
           {!user ? (
             <div className={classes.buttonWrapper}>
+              <ThemeSelect className={classes.theme} />
               <Link href="/login">
                 <Button className={classes.button}>Login</Button>
               </Link>
               <Link href="/signup" layer="primary">
                 <Button className={classes.button}>Sign Up</Button>
               </Link>
-              <ThemeSelect className={classes.theme} />
               <div>
                 <div className={classes.mobileLoginSignup}>
                   <Link>
@@ -167,12 +173,16 @@ const TopHeader = ({classes}) => {
             </div>
           ) : (
             <div>
-              <Link>
-                <FaUserAstronaut
-                  className={classes.icon}
-                  onClick={toggleDropdown}
-                />
-              </Link>
+              <div className={classes.loggedInWrapper}>
+                <ThemeSelect className={classes.theme} />
+                <Link>
+                  <FaUserAstronaut
+                    className={classes.icon}
+                    onClick={toggleDropdown}
+                  />
+                </Link>
+              </div>
+
               {showDropdown ? (
                 <>
                   <div className={classes.dropdown}>
