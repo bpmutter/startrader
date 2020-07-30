@@ -3,6 +3,7 @@ import { Header, Heading, Link, Frame, withStyles } from "arwes";
 import { FaUserAstronaut } from 'react-icons/fa'
 import appContext from './Context';
 import Button from 'arwes/lib/Button';
+import ThemeSelect from './ThemeSelect';
 
 const styles = (theme) => ({
   navBar: {
@@ -33,6 +34,12 @@ const styles = (theme) => ({
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
       display: "none",
     },
+  },
+  buttonWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 350,
   },
   icon: {
     fontSize: "1.5rem",
@@ -65,8 +72,13 @@ const styles = (theme) => ({
       display: "none",
     },
   },
+  theme: {
+    [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
+      display: "none",
+    },
+  },
   mobileLoginSignup: {
-    display: 'none',
+    display: "none",
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
       display: "inline-block",
     },
@@ -100,14 +112,10 @@ const TopHeader = ({classes}) => {
                 StarTrader
               </Heading>
             </Link>
-            <Link href="/" 
-              className={classes.secondary}
-              >
+            <Link href="/" className={classes.secondary}>
               Marketplace
             </Link>
-            <Link href="/sell-ship" 
-              className={classes.secondary}
-            >
+            <Link href="/sell-ship" className={classes.secondary}>
               Sell Ship
             </Link>
           </div>
@@ -118,10 +126,9 @@ const TopHeader = ({classes}) => {
                 <Button className={classes.button}>Login</Button>
               </Link>
               <Link href="/signup" layer="primary">
-                <Button
-                  layer="primary"
-                  className={classes.button}>Sign Up</Button>
+                <Button className={classes.button}>Sign Up</Button>
               </Link>
+              <ThemeSelect className={classes.theme} />
               <div>
                 <div className={classes.mobileLoginSignup}>
                   <Link>

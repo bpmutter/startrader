@@ -1,13 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import App from './App';
 import AppContext from './Context';
+import altThemes from '../theme/altThemes';
+import {createTheme} from 'arwes';
 
 const AppWithContext = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
     const [id, setId] = useState('');
+    const [themeName, setThemeName] = useState(
+      localStorage.getItem("themeName")
+    );
+    const [theme, setTheme] = useState({});
+
+    const updateTheme = (themeName) => { 
+      let myTheme;
+      if (themeName === "luke" || !themeName){
+        myTheme = createTheme();
+        setTheme(myTheme);
+      } else{
+        myTheme = createTheme(altThemes[themeName]);
+        setTheme(myTheme);
+        setThemeName(themeName);
+        localStorage.setItem('themeName', themeName);
+      }
+    }
 
     useEffect(()=>{
+      if(!themeName) {
+        updateTheme();
+      }
+      else {
+        updateTheme(themeName);
+      }
+      
+    }, [themeName])
+
+    useEffect(()=>{
+      
       let id = JSON.parse(localStorage.getItem("id"));
       id = JSON.parse(id);
       let isToken = true;
@@ -52,7 +82,7 @@ const AppWithContext = () => {
       setId(null);
     };
 
-    const context = { token, user, id, login, logout };
+    const context = { token, user, id, login, logout, theme, themeName, updateTheme };
     return (
         <AppContext.Provider value={context}>
             <App/>

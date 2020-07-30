@@ -1,5 +1,5 @@
 const themes = {
-  darkSide: {
+  vader: {
     color: {
       primary: {
         base: "#e91e63",

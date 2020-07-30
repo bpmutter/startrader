@@ -32,19 +32,18 @@ const styles = (theme) => ({
   },
 });
 
-const SelectOption = withStyles(styles)(({classes, label, onChange, name, options, optionValueId, optionInnerContent, required, selected})=>{
-
+const SelectOption = withStyles(styles)(({classes, label, onChange, name, options, optionValueId, optionInnerContent, required, selected, selectClass})=>{
     return (
       <div>
         <label>
-          <LabelText label={label} required={required} />
+          {label && <LabelText label={label} required={required} />}
           <Frame
             show={true}
             animate={true}
             corners={4}
             className={classes.frame}
           >
-            <select name={name} onChange={onChange} className={classes.select} required={required}>
+            <select name={name} onChange={onChange} className={selectClass ? selectClass : classes.select} required={required}>
               {options.map((option) => {
                 return (
                   <option
