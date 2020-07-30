@@ -40,19 +40,19 @@ const themes = {
   yoda: {
     color: {
       primary: {
-        base: "#9ccc65",
-        dark: "#6b9b37",
-        light: "#cfff95",
+        base: "#4caf50",
+        dark: "#087f23",
+        light: "#80e27e",
       },
       control: {
-        base: "#c5e1a5",
-        dark: "#94af76",
-        light: "#f8ffd7",
+        base: "#a5d6a7",
+        dark: "#75a478",
+        light: "#d7ffd9",
       },
       header: {
-        base: "#c5e1a5",
-        dark: "#94af76",
-        light: "#f8ffd7",
+        base: "#a5d6a7",
+        dark: "#75a478",
+        light: "#d7ffd9",
       },
     },
   },
