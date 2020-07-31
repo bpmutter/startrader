@@ -18,6 +18,9 @@ const AppWithContext = () => {
       if (themeName === "luke" || !themeName){
         myTheme = createTheme();
         setTheme(myTheme);
+        themeName = "luke";
+        setThemeName(themeName);
+        localStorage.setItem("themeName", themeName);
       } else{
         myTheme = createTheme(altThemes[themeName]);
         setTheme(myTheme);
