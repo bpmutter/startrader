@@ -83,15 +83,17 @@ const EditProfile = ({ closeModal, renderProfile }) => {
         <Words animate layer="alert">
           <p>{errors ? errors : " "}</p>
         </Words>
-        <p>
-          Current Credit Balance: {userCredits}
-        </p>
+        <Words layer="primary">
+          <p>Current Credit Balance: {userCredits}</p>
+        </Words>
       </div>
       <div>
-        <p>
-          Credits will automatically be deducted from your InterGalactic Banking
-          Clan (IGBC) account.
-        </p>
+          <p>
+        <Words layer="primary">
+            Credits will automatically be deducted from your InterGalactic
+            Banking Clan (IGBC) account.
+        </Words>
+          </p>
         <form onSubmit={submitForm} style={style.loginForm}>
           <Input
             label="Add Credits: "

@@ -167,7 +167,7 @@ const SignUp = () => {
                       optionInnerContent={"species_type"}
                       required
                     />
-                    <p style={{ padding: ".5rem 0" }}>
+                    <p style={{ padding: ".5rem 0 .75rem", margin: 0 }}>
                       <LabelText label="Faction: " required />
                       <Radio
                         name="faction"
@@ -199,7 +199,7 @@ const SignUp = () => {
               </div>
             </Frame>
           </Content>
-          <Puffs/>
+          <Puffs />
         </div>
       )}
     </div>

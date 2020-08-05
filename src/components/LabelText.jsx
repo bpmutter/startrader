@@ -4,7 +4,7 @@ import Words from 'arwes/lib/Words';
 import myTheme from '../theme/theme'
 const styles = theme => ({
   labelText: {
-    width: 160,
+    width: 165,
     display: "inline-block",
     paddingRight: "1rem",
     textAlign: "right",

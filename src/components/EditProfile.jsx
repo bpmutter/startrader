@@ -195,7 +195,7 @@ const EditProfile = ({closeModal, renderProfile}) => {
               required
               selected={species}
             />
-            <p style={{ padding: ".5rem 0" }}>
+            <p style={{ padding: ".5rem 0 .75rem", margin: 0 }}>
               <LabelText label="Faction: " required />
               <Radio
                 name="faction"
