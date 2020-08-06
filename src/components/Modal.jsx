@@ -1,6 +1,6 @@
 import React, { useState, cloneElement } from "react";
 import Modal from "react-modal";
-import { Content, Button, Frame, withStyles } from "arwes";
+import { Content, Button, Frame, withStyles, Text } from "arwes";
 import myTheme from "../theme/theme";
 
 
@@ -75,24 +75,24 @@ const CustomModal = withStyles(styles)(({
 
   return (
     <div>
-      <Content>
-        <Button onClick={openModal} layer={buttonLayer} style={buttonStyles}>
-          {buttonText}
-        </Button>
-        <Modal
-          isOpen={modalIsOpen}
-          // onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={modalStyles}
-          contentLabel={contentLabel || ""}
-        >
-          <Content className={classes.container} className="modal-content">
-            <Frame animate level={3} corners={4} className={classes.frame}>
-              {childrenArr}
-            </Frame>
-          </Content>
-        </Modal>
-      </Content>
+        <Content>
+          <Button onClick={openModal} layer={buttonLayer} style={buttonStyles}>
+            {buttonText}
+          </Button>
+          <Modal
+            isOpen={modalIsOpen}
+            // onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={modalStyles}
+            contentLabel={contentLabel || ""}
+          >
+            <Content className={classes.container}>
+              <Frame animate level={3} corners={4} className={classes.frame}>
+                {childrenArr}
+              </Frame>
+            </Content>
+          </Modal>
+        </Content>
     </div>
   );
 });

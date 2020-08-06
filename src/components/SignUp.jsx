@@ -71,6 +71,7 @@ const SignUp = () => {
         setConfirmPassword('');
         document.getElementsByName('password')[0].value = '';
         document.getElementsByName('confirmPassword')[0].value = '';
+        return;
     }
     
     try {

@@ -9,15 +9,17 @@ const styles = (theme) => ({
   container: {
     display: "flex",
     justifyContent: "flex-start",
+
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
-      flexDirection: 'column',
-      marginBottom: '.5em'
-    }
+      flexDirection: "column",
+      marginBottom: ".5em",
+    },
   },
   inputFrame: {
     padding: "5px 3px",
     display: "inline-block",
     backgroundColor: myTheme.color.background.main,
+    height: myTheme.font.baseSize + 20,
   },
   input: {
     width: "100%",

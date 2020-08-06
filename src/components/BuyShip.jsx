@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import appContext from './Context';
-import { Button, Heading, Link } from "arwes";
+import { Button, Heading, Link, Words } from "arwes";
 import {FaTimesCircle} from 'react-icons/fa'
 const style = {
     wrapper: {padding: '2rem'},
@@ -53,17 +53,19 @@ const BuyShip = ({ ship, rerenderParent, closeModal }) => {
       <Heading node="h3">Buy {shipName}</Heading>
       {id ? (
         userCanBuy ? (
-          <div>
-            <p>Are you sure you want to buy {shipName}?</p>
-            <p>
-              The ship costs {ship.sale_price}, and you have {user.credit}.
-              After this purchase you will have {user.credit - ship.sale_price}{" "}
-              credits remaining.
-            </p>
+          <Words layer="primary">
             <div>
-              <Button onClick={buyShip}>Buy Ship</Button>
+              <p>Are you sure you want to buy {shipName}?</p>
+              <p>
+                The ship costs {ship.sale_price}, and you have {user.credit}.
+                After this purchase you will have{" "}
+                {user.credit - ship.sale_price} credits remaining.
+              </p>
+              <div>
+                <Button onClick={buyShip}>Buy Ship</Button>
+              </div>
             </div>
-          </div>
+          </Words>
         ) : (
           <div>
             <p>
@@ -80,20 +82,22 @@ const BuyShip = ({ ship, rerenderParent, closeModal }) => {
           </div>
         )
       ) : (
-        <div>
-          <p>
-            It looks like you're not logged in. Please log in or create an
-            account to buy {shipName}.
-          </p>
-          <div style={style.buttonContainer}>
-            <Link href="/login">
-              <Button>Log In</Button>
-            </Link>
-            <Link href="/signup">
-              <Button>Sign Up</Button>
-            </Link>
+        <Words layer="primary">
+          <div>
+            <p>
+              It looks like you're not logged in. Please log in or create an
+              account to buy {shipName}.
+            </p>
+            <div style={style.buttonContainer}>
+              <Link href="/login">
+                <Button>Log In</Button>
+              </Link>
+              <Link href="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </Words>
       )}
     </div>
   );

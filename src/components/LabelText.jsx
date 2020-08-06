@@ -5,11 +5,14 @@ import myTheme from '../theme/theme'
 const styles = theme => ({
   labelText: {
     width: 165,
-    display: "inline-block",
+    display: "inline-flex",
     paddingRight: "1rem",
     textAlign: "right",
     fontFamily: myTheme.font.fontFamily.regular,
     fontSize: myTheme.font.baseSize,
+    height: myTheme.font.baseSize +20, 
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
     [`@media (max-width: ${theme.responsive.small + 1}px)`]: {
       display: 'block',
       textAlign: 'left',
