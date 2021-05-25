@@ -65,6 +65,8 @@ The data was provided via the Star Wars API (SWAPI) data. We used the data to cr
 
 Images were hosted in an Amazon S3 container. 
 
+The repo for the server is available at [bradsimpson213/star_trader_server](https://github.com/bradsimpson213/star_trader_server)
+
 ## Conclusion
 StarTrader was a ton of fun to make because we both (Ben and Brad), are big Star Wars fans. 
 
